@@ -1,2 +1,132 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ganpati Festival Admin</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>body{font-family:system-ui,sans-serif;max-width:1100px;margin:40px auto;padding:20px;background:#fff8ec;color:#4b2400}button{padding:10px 14px;border:0;border-radius:10px;cursor:pointer;font-weight:700}.danger{background:#d33;color:#fff}.ok{background:#2f7d32;color:#fff}.card{background:#fff;border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 4px 20px #0001}.card img{max-width:240px;max-height:220px;border-radius:12px;display:block;margin-bottom:10px}.row{display:flex;gap:10px;flex-wrap:wrap}input{padding:12px;border:1px solid #ccc;border-radius:10px;width:100%;max-width:420px}</style></head><body><h1>🙏 Ganpati Festival Photo Approval</h1><p id="status">Configure Supabase below, then sign in.</p><section class="card"><input id="url" placeholder="Supabase Project URL"><input id="key" placeholder="Supabase anon/public key" style="margin-top:10px"><input id="email" type="email" placeholder="Admin email" style="margin-top:10px"><input id="password" type="password" placeholder="Admin password" style="margin-top:10px"><div class="row" style="margin-top:10px"><button id="login" class="ok">Sign in</button><button id="logout">Sign out</button></div></section><section id="list"></section><script>let sb=null;const $=id=>document.getElementById(id);$('login').onclick=async()=>{try{sb=window.supabase.createClient($('url').value.trim(),$('key').value.trim());const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)throw error;$('status').textContent='Signed in. Loading pending photos…';await load();}catch(e){$('status').textContent=e.message}};$('logout').onclick=async()=>{if(sb)await sb.auth.signOut();$('status').textContent='Signed out.';$('list').innerHTML='';};async function load(){const {data,error}=await sb.from('festival_photos').select('*').eq('status','pending').order('created_at',{ascending:false});if(error){$('status').textContent=error.message;return}$('status').textContent=`${data.length} pending photo(s)`;$('list').innerHTML='';for(const p of data){const url=sb.storage.from('festival-photos').getPublicUrl(p.storage_path).data.publicUrl;const el=document.createElement('div');el.className='card';el.innerHTML=`<img src="${url}"><p><strong>${escapeHtml(p.caption||'No caption')}</strong></p><p>${escapeHtml(p.uploader_name||'Anonymous')}</p><div class="row"><button class="ok" onclick="review('${p.id}','approved')">Approve</button><button class="danger" onclick="review('${p.id}','rejected')">Reject</button></div>`;$('list').appendChild(el)}}async function review(id,status){const {error}=await sb.from('festival_photos').update({status}).eq('id',id);if(error)alert(error.message);else await load()}function escapeHtml(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}</script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Festival Admin — Contributors</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#fff7e6;color:#4b2b1a}.wrap{max-width:1050px;margin:auto;padding:28px 18px 60px}h1{color:#8c3900}.panel{background:#fff;border:1px solid #f0d2ac;border-radius:20px;padding:22px;margin:18px 0;box-shadow:0 10px 30px rgba(100,50,0,.07)}input,textarea,select{width:100%;box-sizing:border-box;padding:11px 12px;border:1px solid #dfc19e;border-radius:10px;margin:6px 0 14px;font:inherit}textarea{min-height:90px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:999px;padding:11px 17px;font-weight:800;cursor:pointer}.primary{background:#e85d04;color:white}.secondary{background:#ffe1bd;color:#7a3600}.danger{background:#b42318;color:white}.muted{color:#775740}.hidden{display:none}.row{display:grid;grid-template-columns:60px 1fr 120px 100px 150px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #f0dfc9}.row img{width:50px;height:50px;border-radius:50%;object-fit:cover}.status{padding:10px;border-radius:10px;background:#fff4df;margin-bottom:12px}.top{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}@media(max-width:700px){.grid{grid-template-columns:1fr}.row{grid-template-columns:50px 1fr}.row>*:nth-child(n+3){grid-column:2}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1>🙏 Festival Admin</h1><p class="muted">Manage contributors without editing the website code.</p></div><a href="index.html">← View website</a></div>
+  <div id="status" class="status">Connecting…</div>
+
+  <section id="loginPanel" class="panel">
+    <h2>Admin Login</h2>
+    <p class="muted">Use the authorized Supabase account created for the festival.</p>
+    <input id="email" type="email" placeholder="Admin email">
+    <input id="password" type="password" placeholder="Password">
+    <button class="btn primary" id="loginBtn">Sign in</button>
+  </section>
+
+  <section id="appPanel" class="hidden">
+    <div class="panel">
+      <div class="top"><h2>Contributors</h2><div class="actions"><button class="btn secondary" id="logoutBtn">Sign out</button><button class="btn primary" id="newBtn">+ Add Contributor</button></div></div>
+      <div id="list"></div>
+    </div>
+
+    <section id="editor" class="panel hidden">
+      <h2 id="editorTitle">Add Contributor</h2>
+      <input id="name" placeholder="Full name">
+      <div class="grid">
+        <div><label>Amount (₹)</label><input id="amount" type="number" min="0" step="1" placeholder="25000"></div>
+        <div><label>Position</label><input id="position" type="number" min="1" step="1" placeholder="1"></div>
+        <div><label>Category</label><input id="category" placeholder="Decoration / Food Seva / Puja Seva"></div>
+        <div><label>Icon</label><input id="icon" placeholder="🌺"></div>
+      </div>
+      <label>Contribution description</label>
+      <textarea id="contribution" placeholder="What did this contributor support?"></textarea>
+      <label>Photo</label>
+      <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
+      <div class="actions"><button class="btn primary" id="saveBtn">Save Contributor</button><button class="btn secondary" id="cancelBtn">Cancel</button></div>
+      <p id="editorStatus" class="muted"></p>
+    </section>
+  </section>
+</div>
+<script>
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+const BUCKET = "contributor-photos";
+let db = null;
+let editingId = null;
+const $ = id => document.getElementById(id);
+
+function setStatus(text, good=false){$('status').textContent=text;$('status').style.background=good?'#e8f7e9':'#fff4df'}
+function configReady(){return SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase}
+
+async function init(){
+ if(!configReady()){setStatus('Supabase is not configured yet. Add the project URL and anon key in both index.html and admin.html.');return}
+ db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+ const {data:{session}}=await db.auth.getSession();
+ showAuth(!!session);
+ if(session) loadList(); else setStatus('Please sign in.');
+ db.auth.onAuthStateChange((_event,session)=>{showAuth(!!session);if(session)loadList()});
+}
+function showAuth(ok){$('loginPanel').classList.toggle('hidden',ok);$('appPanel').classList.toggle('hidden',!ok);}
+
+$('loginBtn').onclick=async()=>{
+ if(!db){setStatus('Configure Supabase first.');return}
+ const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+ if(error)setStatus(error.message); else setStatus('Signed in.',true);
+};
+$('logoutBtn').onclick=async()=>{await db.auth.signOut();};
+$('newBtn').onclick=()=>openEditor();
+$('cancelBtn').onclick=()=>openEditor(false);
+
+async function loadList(){
+ const {data,error}=await db.from('contributors').select('*').order('position',{ascending:true});
+ if(error){setStatus(error.message);return}
+ $('list').innerHTML='';
+ if(!data.length){$('list').innerHTML='<p class="muted">No contributors yet. Click “Add Contributor” when the contribution period starts.</p>';return}
+ data.forEach(p=>{
+  const row=document.createElement('div');row.className='row';
+  row.innerHTML=`<img src="${esc(p.photo||'https://placehold.co/100x100/ffd6a0/8b4513?text=Photo')}" onerror="this.src='https://placehold.co/100x100/ffd6a0/8b4513?text=Photo'"><div><strong>${esc(p.name)}</strong><br><span class="muted">${esc(p.category||'')}</span></div><div>₹${Number(p.amount||0).toLocaleString('en-IN')}</div><div>#${p.position||0}</div><div class="actions"><button class="btn secondary" onclick="editContributor('${p.id}')">Edit</button><button class="btn danger" onclick="deleteContributor('${p.id}')">Delete</button></div>`;
+  $('list').appendChild(row);
+ });
+ setStatus(`${data.length} contributor${data.length===1?'':'s'} loaded.`,true);
+}
+function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+
+async function editContributor(id){
+ const {data,error}=await db.from('contributors').select('*').eq('id',id).single();
+ if(error){setStatus(error.message);return}
+ editingId=id;openEditor(true,data);
+}
+function openEditor(show=true,data=null){
+ $('editor').classList.toggle('hidden',!show); if(!show)return;
+ $('editorTitle').textContent=data?'Edit Contributor':'Add Contributor';
+ $('name').value=data?.name||'';$('amount').value=data?.amount??'';$('position').value=data?.position??'';$('category').value=data?.category||'';$('icon').value=data?.icon||'🙏';$('contribution').value=data?.contribution||'';$('photo').value='';editingId=data?.id||null;
+ window.scrollTo({top:$('editor').offsetTop-20,behavior:'smooth'});
+}
+
+$('saveBtn').onclick=async()=>{
+ const name=$('name').value.trim(); if(!name){$('editorStatus').textContent='Name is required.';return}
+ $('saveBtn').disabled=true;$('editorStatus').textContent='Saving…';
+ try{
+  let photoUrl=null; const file=$('photo').files[0];
+  if(file){
+   const safe=file.name.toLowerCase().replace(/[^a-z0-9.]+/g,'-'); const path=`${crypto.randomUUID()}-${safe}`;
+   const up=await db.storage.from(BUCKET).upload(path,file,{upsert:false,contentType:file.type});
+   if(up.error)throw up.error; photoUrl=db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+  const payload={name,amount:Number($('amount').value||0),position:Number($('position').value||9999),category:$('category').value.trim(),contribution:$('contribution').value.trim(),icon:$('icon').value.trim()||'🙏'};
+  if(photoUrl)payload.photo=photoUrl;
+  let result;
+  if(editingId)result=await db.from('contributors').update(payload).eq('id',editingId);else result=await db.from('contributors').insert(payload);
+  if(result.error)throw result.error;
+  $('editorStatus').textContent='Saved.';openEditor(false);await loadList();
+ }catch(e){$('editorStatus').textContent=e.message||String(e)}finally{$('saveBtn').disabled=false}
+};
+
+window.deleteContributor=async id=>{
+ if(!confirm('Delete this contributor?'))return;
+ const {error}=await db.from('contributors').delete().eq('id',id); if(error)setStatus(error.message); else loadList();
+};
+window.editContributor=editContributor;
+init();
+</script>
+</body>
+</html>
