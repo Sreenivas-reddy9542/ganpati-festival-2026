@@ -1,0 +1,5505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Mittapalli Village Association | Vinayaka Chaturthi 2026 | Ganpati Bappa Morya
+</title>
+
+<meta
+    name="description"
+    content="Official Vinayaka Chaturthi 2026 festival website with programs, organizing committee, contributors, Darshan, live viewing and memories."
+>
+
+
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: #fff8ed;
+    color: #4a2410;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HIDE NORMAL CURSOR
+========================================================= */
+
+html,
+body,
+a,
+button,
+input,
+textarea,
+select {
+    cursor: none !important;
+}
+
+
+/* =========================================================
+   RUNNING MUSHIKA
+========================================================= */
+
+#mushikaCursor {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 110px;
+    height: 80px;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transform:
+        translate(-50%, -50%);
+
+    will-change:
+        left,
+        top;
+}
+
+#mushikaSvg {
+
+    width: 110px;
+    height: 80px;
+
+    display: block;
+
+    overflow: visible;
+}
+
+.mushika-run-body {
+
+    transform-origin:
+        50% 70%;
+}
+
+.mushika-running .mushika-run-body {
+
+    animation:
+        mushikaBounce
+        .18s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.front-leg-a,
+.back-leg-a,
+.front-leg-b,
+.back-leg-b {
+
+    transform-box:
+        fill-box;
+
+    transform-origin:
+        top center;
+}
+
+.mushika-running .front-leg-a {
+
+    animation:
+        frontLegA
+        .20s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.mushika-running .front-leg-b {
+
+    animation:
+        frontLegB
+        .20s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.mushika-running .back-leg-a {
+
+    animation:
+        backLegA
+        .20s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.mushika-running .back-leg-b {
+
+    animation:
+        backLegB
+        .20s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.mushika-tail-path {
+
+    transform-box:
+        fill-box;
+
+    transform-origin:
+        100% 50%;
+}
+
+.mushika-running .mushika-tail-path {
+
+    animation:
+        tailSwing
+        .28s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+.mushika-whiskers {
+
+    transform-origin:
+        center;
+}
+
+.mushika-running .mushika-whiskers {
+
+    animation:
+        whiskerMove
+        .35s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+
+/* =========================================================
+   MUSHIKA ANIMATIONS
+========================================================= */
+
+@keyframes mushikaBounce {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    to {
+        transform:
+            translateY(-3px)
+            rotate(2deg);
+    }
+
+}
+
+@keyframes frontLegA {
+
+    from {
+        transform:
+            rotate(38deg);
+    }
+
+    to {
+        transform:
+            rotate(-38deg);
+    }
+
+}
+
+@keyframes frontLegB {
+
+    from {
+        transform:
+            rotate(-36deg);
+    }
+
+    to {
+        transform:
+            rotate(34deg);
+    }
+
+}
+
+@keyframes backLegA {
+
+    from {
+        transform:
+            rotate(-38deg);
+    }
+
+    to {
+        transform:
+            rotate(34deg);
+    }
+
+}
+
+@keyframes backLegB {
+
+    from {
+        transform:
+            rotate(35deg);
+    }
+
+    to {
+        transform:
+            rotate(-35deg);
+    }
+
+}
+
+@keyframes tailSwing {
+
+    from {
+        transform:
+            rotate(-9deg);
+    }
+
+    to {
+        transform:
+            rotate(9deg);
+    }
+
+}
+
+@keyframes whiskerMove {
+
+    from {
+        transform:
+            translateX(0);
+    }
+
+    to {
+        transform:
+            translateX(1px);
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 5000;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        15px 6%;
+
+    background:
+        rgba(255,248,237,.94);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 3px 20px
+        rgba(100,45,0,.12);
+}
+
+.logo {
+
+    font-size:
+        1.2rem;
+
+    font-weight:
+        800;
+
+    color:
+        #d35400;
+
+    white-space:
+        nowrap;
+}
+
+.nav-links {
+
+    display:
+        flex;
+
+    gap:
+        20px;
+
+    list-style:
+        none;
+}
+
+.nav-links a {
+
+    color:
+        #6b3215;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        600;
+
+    transition:
+        .25s;
+}
+
+.nav-links a:hover {
+
+    color:
+        #e67e22;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height:
+        100vh;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        110px 20px 70px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(255,213,105,.85),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            135deg,
+            #fff3ce,
+            #ffd6a0,
+            #fff0d0
+        );
+}
+
+.hero-content {
+
+    max-width:
+        900px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+}
+
+.floating {
+
+    position:
+        absolute;
+
+    pointer-events:
+        none;
+
+    animation:
+        floatFlower
+        6s
+        ease-in-out
+        infinite;
+}
+
+.flower1 {
+
+    left:
+        6%;
+
+    top:
+        15%;
+
+    font-size:
+        3rem;
+}
+
+.flower2 {
+
+    right:
+        7%;
+
+    bottom:
+        16%;
+
+    font-size:
+        3rem;
+
+    animation-delay:
+        2s;
+}
+
+.flower3 {
+
+    right:
+        15%;
+
+    top:
+        28%;
+
+    font-size:
+        2rem;
+
+    animation-delay:
+        1s;
+}
+
+.hero-badge {
+
+    display:
+        inline-block;
+
+    padding:
+        8px 18px;
+
+    margin-bottom:
+        18px;
+
+    border-radius:
+        50px;
+
+    background:
+        rgba(255,255,255,.7);
+
+    color:
+        #8c3900;
+
+    font-weight:
+        700;
+
+    border:
+        1px solid
+        rgba(211,84,0,.15);
+}
+
+.ganesha {
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    margin:
+        0 auto 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9f43,
+            #e85d04
+        );
+
+    box-shadow:
+
+        0 15px 40px
+        rgba(190,76,0,.35),
+
+        inset 0 0 20px
+        rgba(255,255,255,.35);
+
+    animation:
+        ganeshaPulse
+        3s
+        ease-in-out
+        infinite;
+}
+
+.ganesha span {
+
+    font-size:
+        7rem;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0,0,0,.15)
+        );
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            2.8rem,
+            8vw,
+            5.7rem
+        );
+
+    line-height:
+        1;
+
+    color:
+        #a63d00;
+
+    margin-bottom:
+        15px;
+}
+
+.hero h2 {
+
+    font-size:
+        clamp(
+            1.2rem,
+            3vw,
+            1.8rem
+        );
+
+    color:
+        #7b3f14;
+
+    margin-bottom:
+        15px;
+}
+
+.hero p {
+
+    max-width:
+        720px;
+
+    margin:
+        auto;
+
+    line-height:
+        1.75;
+
+    font-size:
+        1.05rem;
+}
+
+.hero-buttons {
+
+    margin-top:
+        30px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+}
+
+.hero-btn {
+
+    padding:
+        14px 27px;
+
+    border-radius:
+        50px;
+
+    text-decoration:
+        none;
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e85d04,
+            #f48c06
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(205,70,0,.3);
+
+    transition:
+        .25s;
+}
+
+.hero-btn:hover {
+
+    transform:
+        translateY(-3px);
+}
+
+.hero-btn.secondary {
+
+    color:
+        #a63d00;
+
+    background:
+        rgba(255,255,255,.8);
+
+    border:
+        1px solid
+        rgba(166,61,0,.15);
+
+    box-shadow:
+        0 8px 20px
+        rgba(100,45,0,.08);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+section {
+
+    padding:
+        90px 7%;
+}
+
+.section-title {
+
+    text-align:
+        center;
+
+    max-width:
+        850px;
+
+    margin:
+        0 auto 48px;
+}
+
+.section-label {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #d35400;
+
+    font-size:
+        .78rem;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1.5px;
+}
+
+.section-title h2 {
+
+    color:
+        #a63d00;
+
+    font-size:
+        2.5rem;
+
+    margin-bottom:
+        10px;
+}
+
+.section-title p {
+
+    color:
+        #805333;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section {
+
+    background:
+        #fff;
+
+    text-align:
+        center;
+}
+
+.countdown {
+
+    max-width:
+        850px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        20px;
+}
+
+.time-box {
+
+    padding:
+        25px 15px;
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff4d6,
+            #ffe2b8
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(115,55,0,.1);
+}
+
+.time-box h3 {
+
+    color:
+        #d35400;
+
+    font-size:
+        2.5rem;
+}
+
+.time-box span {
+
+    color:
+        #81522f;
+
+    font-size:
+        .9rem;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================================================
+   WEEKLY PROGRAMS
+========================================================= */
+
+.schedule {
+
+    background:
+        #fff7e6;
+}
+
+.schedule-grid {
+
+    max-width:
+        1150px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        22px;
+}
+
+.day-card {
+
+    position:
+        relative;
+
+    padding:
+        27px;
+
+    background:
+        white;
+
+    border-radius:
+        24px;
+
+    border:
+        1px solid
+        rgba(222,136,55,.15);
+
+    box-shadow:
+        0 12px 35px
+        rgba(100,50,0,.09);
+
+    overflow:
+        hidden;
+
+    transition:
+        .25s;
+}
+
+.day-card:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+.day-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        6px;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            #e85d04,
+            #ffb703
+        );
+}
+
+.day-top {
+
+    display:
+        flex;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        18px;
+}
+
+.day-number {
+
+    width:
+        58px;
+
+    height:
+        58px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        18px;
+
+    background:
+        #e85d04;
+
+    color:
+        white;
+
+    font-weight:
+        800;
+}
+
+.day-heading h3 {
+
+    color:
+        #9e3b00;
+
+    margin-bottom:
+        4px;
+}
+
+.day-heading p {
+
+    color:
+        #87634b;
+
+    font-size:
+        .9rem;
+}
+
+.program-list {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+}
+
+.program {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        82px 1fr;
+
+    gap:
+        10px;
+
+    padding:
+        12px 14px;
+
+    border-radius:
+        14px;
+
+    background:
+        #fff8ed;
+
+    border:
+        1px solid
+        #f9dfc1;
+}
+
+.program-time {
+
+    color:
+        #d35400;
+
+    font-weight:
+        800;
+
+    font-size:
+        .9rem;
+}
+
+.program-name {
+
+    color:
+        #69462f;
+
+    line-height:
+        1.45;
+}
+
+
+/* =========================================================
+   HIGHLIGHT
+========================================================= */
+
+.highlight {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f08a24,
+            #d94c00
+        );
+
+    color:
+        white;
+
+    text-align:
+        center;
+}
+
+.highlight-content {
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+}
+
+.highlight h2 {
+
+    font-size:
+        2.8rem;
+
+    margin-bottom:
+        18px;
+}
+
+.highlight p {
+
+    line-height:
+        1.8;
+
+    font-size:
+        1.05rem;
+}
+
+
+/* =========================================================
+   ORGANIZING COMMITTEE
+========================================================= */
+
+.organizers {
+
+    background:
+        #fff;
+}
+
+.organizer-grid {
+
+    max-width:
+        1180px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        23px;
+}
+
+.organizer-card {
+
+    position:
+        relative;
+
+    padding:
+        30px 24px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf2,
+            #fff0d8
+        );
+
+    border-radius:
+        26px;
+
+    border:
+        1px solid
+        #f7d8ae;
+
+    box-shadow:
+        0 13px 35px
+        rgba(100,50,0,.08);
+
+    transition:
+        .3s;
+}
+
+.organizer-card:hover {
+
+    transform:
+        translateY(-6px);
+}
+
+.organizer-photo {
+
+    width:
+        125px;
+
+    height:
+        125px;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        50%;
+
+    border:
+        6px solid
+        white;
+
+    box-shadow:
+        0 9px 25px
+        rgba(80,35,0,.18);
+
+    background:
+        #ffd6a0;
+
+    margin:
+        0 auto 17px;
+}
+
+.organizer-card h3 {
+
+    color:
+        #963800;
+
+    margin-bottom:
+        6px;
+
+    font-size:
+        1.25rem;
+}
+
+.organizer-role {
+
+    color:
+        #d35400;
+
+    font-weight:
+        800;
+
+    font-size:
+        .9rem;
+
+    margin-bottom:
+        12px;
+}
+
+.organizer-card p {
+
+    color:
+        #775740;
+
+    line-height:
+        1.65;
+
+    font-size:
+        .92rem;
+}
+
+.organizer-badge {
+
+    display:
+        inline-block;
+
+    margin-top:
+        15px;
+
+    padding:
+        7px 13px;
+
+    border-radius:
+        50px;
+
+    background:
+        #ffe0b2;
+
+    color:
+        #9a4300;
+
+    font-size:
+        .8rem;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   CONTRIBUTORS
+========================================================= */
+
+.contributors {
+
+    background:
+        #fff7e6;
+}
+
+.contributor-summary {
+
+    max-width:
+        1000px;
+
+    margin:
+        -20px auto 40px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        15px;
+}
+
+.summary-box {
+
+    padding:
+        20px;
+
+    text-align:
+        center;
+
+    background:
+        white;
+
+    border-radius:
+        18px;
+
+    border:
+        1px solid
+        #ffe1bd;
+
+    box-shadow:
+        0 8px 20px
+        rgba(100,50,0,.05);
+}
+
+.summary-number {
+
+    display:
+        block;
+
+    color:
+        #d35400;
+
+    font-size:
+        2rem;
+
+    font-weight:
+        800;
+}
+
+.summary-label {
+
+    color:
+        #805333;
+
+    font-size:
+        .9rem;
+}
+
+.contributor-grid {
+
+    max-width:
+        1180px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        23px;
+}
+
+.contributor-card {
+
+    position:
+        relative;
+
+    padding:
+        30px 24px;
+
+    text-align:
+        center;
+
+    background:
+        white;
+
+    border-radius:
+        26px;
+
+    border:
+        1px solid
+        #f3d3ad;
+
+    box-shadow:
+        0 13px 35px
+        rgba(100,50,0,.08);
+
+    transition:
+        .3s;
+}
+
+.contributor-card:hover {
+
+    transform:
+        translateY(-6px);
+}
+
+.contributor-photo-wrap {
+
+    position:
+        relative;
+
+    width:
+        125px;
+
+    height:
+        125px;
+
+    margin:
+        0 auto 17px;
+}
+
+.contributor-photo {
+
+    width:
+        125px;
+
+    height:
+        125px;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        50%;
+
+    border:
+        6px solid
+        #fff;
+
+    box-shadow:
+        0 9px 25px
+        rgba(80,35,0,.18);
+
+    background:
+        #ffd6a0;
+}
+
+.seva-icon {
+
+    position:
+        absolute;
+
+    right:
+        -4px;
+
+    bottom:
+        -2px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        #e85d04;
+
+    color:
+        white;
+
+    border:
+        3px solid
+        white;
+
+    font-size:
+        17px;
+}
+
+.contributor-card h3 {
+
+    color:
+        #963800;
+
+    margin-bottom:
+        5px;
+
+    font-size:
+        1.2rem;
+}
+
+.contributor-category {
+
+    color:
+        #d35400;
+
+    font-size:
+        .86rem;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        10px;
+}
+
+.contribution-amount {
+
+    margin:
+        13px auto;
+
+    display:
+        inline-block;
+
+    padding:
+        10px 18px;
+
+    border-radius:
+        50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0c2,
+            #ffd37a
+        );
+
+    color:
+        #9a4300;
+
+    font-size:
+        1.2rem;
+
+    font-weight:
+        900;
+
+    border:
+        1px solid
+        #f1c269;
+}
+
+.contributor-card p {
+
+    color:
+        #775740;
+
+    line-height:
+        1.6;
+
+    font-size:
+        .92rem;
+}
+
+.thank-you {
+
+    margin:
+        35px auto 0;
+
+    max-width:
+        700px;
+
+    text-align:
+        center;
+
+    color:
+        #8d4d28;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   GANESH DARSHAN
+========================================================= */
+
+.darshan {
+
+    background:
+        #fff5e0;
+}
+
+.darshan-intro {
+
+    max-width:
+        800px;
+
+    margin:
+        -18px auto 35px;
+
+    text-align:
+        center;
+
+    color:
+        #805333;
+
+    line-height:
+        1.7;
+}
+
+.darshan-grid {
+
+    max-width:
+        1180px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        20px;
+}
+
+.darshan-card {
+
+    overflow:
+        hidden;
+
+    background:
+        white;
+
+    border-radius:
+        22px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(100,50,0,.09);
+
+    transition:
+        .3s;
+}
+
+.darshan-card:hover {
+
+    transform:
+        translateY(-5px);
+}
+
+.darshan-photo {
+
+    width:
+        100%;
+
+    height:
+        270px;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    background:
+        #ffd166;
+}
+
+.darshan-info {
+
+    padding:
+        17px;
+}
+
+.darshan-info h3 {
+
+    color:
+        #a63d00;
+
+    margin-bottom:
+        6px;
+}
+
+.darshan-info p {
+
+    color:
+        #795b44;
+
+    line-height:
+        1.55;
+
+    font-size:
+        .9rem;
+}
+
+
+/* =========================================================
+   LIVE DARSHAN
+========================================================= */
+
+.remote {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff3ce,
+            #ffe2b8
+        );
+}
+
+.remote-grid {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.4fr 1fr;
+
+    gap:
+        28px;
+}
+
+.live-box {
+
+    min-height:
+        360px;
+
+    background:
+        #351a0e;
+
+    border-radius:
+        24px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 15px 35px
+        rgba(70,25,0,.18);
+}
+
+.live-placeholder {
+
+    min-height:
+        360px;
+
+    padding:
+        30px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    color:
+        #fff2d8;
+}
+
+.live-placeholder-icon {
+
+    font-size:
+        4rem;
+
+    margin-bottom:
+        15px;
+}
+
+.live-placeholder h3 {
+
+    margin-bottom:
+        9px;
+}
+
+.live-placeholder p {
+
+    max-width:
+        450px;
+
+    color:
+        #e9d3b8;
+
+    line-height:
+        1.6;
+}
+
+.live-video {
+
+    width:
+        100%;
+
+    min-height:
+        360px;
+
+    height:
+        100%;
+
+    border:
+        none;
+}
+
+.remote-info {
+
+    padding:
+        30px;
+
+    background:
+        white;
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(100,50,0,.08);
+}
+
+.remote-info h3 {
+
+    color:
+        #a63d00;
+
+    font-size:
+        1.5rem;
+
+    margin-bottom:
+        12px;
+}
+
+.remote-info p {
+
+    color:
+        #785843;
+
+    line-height:
+        1.7;
+
+    margin-bottom:
+        18px;
+}
+
+.remote-list {
+
+    display:
+        grid;
+
+    gap:
+        11px;
+}
+
+.remote-list div {
+
+    padding:
+        12px 14px;
+
+    border-radius:
+        13px;
+
+    background:
+        #fff8ed;
+
+    border:
+        1px solid
+        #f6dfc4;
+
+    color:
+        #704a30;
+}
+
+
+/* =========================================================
+   QR SECTION
+========================================================= */
+
+.qr-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #fff1d8
+        );
+
+    text-align:
+        center;
+}
+
+.qr-box {
+
+    max-width:
+        850px;
+
+    margin:
+        auto;
+
+    padding:
+        38px 25px;
+
+    background:
+        white;
+
+    border-radius:
+        28px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(100,50,0,.09);
+
+    border:
+        1px solid
+        #f2d1aa;
+}
+
+.qr-box h3 {
+
+    color:
+        #a63d00;
+
+    font-size:
+        1.7rem;
+
+    margin-bottom:
+        10px;
+}
+
+.qr-box > p {
+
+    color:
+        #805333;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        24px;
+}
+
+#qrcode {
+
+    width:
+        220px;
+
+    min-height:
+        220px;
+
+    margin:
+        0 auto 18px;
+
+    padding:
+        12px;
+
+    background:
+        white;
+
+    border-radius:
+        16px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+#qrcode img {
+
+    display:
+        block;
+
+    width:
+        190px;
+
+    height:
+        190px;
+}
+
+.qr-url {
+
+    max-width:
+        600px;
+
+    margin:
+        auto;
+
+    padding:
+        11px 15px;
+
+    background:
+        #fff8ed;
+
+    border-radius:
+        12px;
+
+    border:
+        1px solid
+        #f2dfc8;
+
+    color:
+        #805333;
+
+    word-break:
+        break-word;
+
+    font-size:
+        .88rem;
+}
+
+
+/* =========================================================
+   FRIEND MEMORIES
+========================================================= */
+
+.memories {
+
+    background:
+        #fff;
+}
+
+.upload-area {
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto 40px;
+
+    padding:
+        40px 25px;
+
+    text-align:
+        center;
+
+    border:
+        3px dashed
+        #e89b4a;
+
+    border-radius:
+        25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf0,
+            #ffe9c6
+        );
+
+    transition:
+        .3s;
+}
+
+.upload-area.dragover {
+
+    border-color:
+        #d35400;
+
+    background:
+        #ffddb0;
+}
+
+.upload-icon {
+
+    font-size:
+        3.5rem;
+
+    margin-bottom:
+        12px;
+}
+
+.upload-area h3 {
+
+    color:
+        #a63d00;
+
+    font-size:
+        1.5rem;
+
+    margin-bottom:
+        8px;
+}
+
+.upload-area p {
+
+    color:
+        #805333;
+
+    margin-bottom:
+        20px;
+
+    line-height:
+        1.6;
+}
+
+.upload-button {
+
+    display:
+        inline-block;
+
+    padding:
+        13px 25px;
+
+    color:
+        white;
+
+    border-radius:
+        50px;
+
+    font-weight:
+        700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e85d04,
+            #f48c06
+        );
+}
+
+
+
+.upload-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 720px;
+    margin: 18px auto 0;
+}
+
+.upload-details input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(125, 51, 0, .18);
+    border-radius: 12px;
+    font: inherit;
+    background: #fffaf2;
+}
+
+.upload-details input:focus {
+    outline: 3px solid rgba(255, 145, 0, .16);
+    border-color: #ff8a00;
+}
+
+.upload-status {
+    max-width: 720px;
+    margin: 16px auto 0;
+    min-height: 24px;
+    font-weight: 700;
+}
+
+.gallery-meta {
+    padding: 10px 12px 14px;
+    font-size: .9rem;
+    color: #7d3300;
+}
+
+.gallery-meta strong { display: block; margin-bottom: 3px; }
+
+@media (max-width: 640px) {
+    .upload-details { grid-template-columns: 1fr; }
+}
+
+#photoInput {
+
+    display:
+        none;
+}
+
+.gallery-grid {
+
+    max-width:
+        1180px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        20px;
+}
+
+.gallery-photo {
+
+    position:
+        relative;
+
+    height:
+        250px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        20px;
+
+    background:
+        #ffd6a0;
+
+    box-shadow:
+        0 10px 25px
+        rgba(100,50,0,.12);
+}
+
+.gallery-photo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        .4s;
+}
+
+.gallery-photo:hover img {
+
+    transform:
+        scale(1.07);
+}
+
+.delete-photo {
+
+    position:
+        absolute;
+
+    right:
+        10px;
+
+    top:
+        10px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(70,20,0,.82);
+
+    color:
+        white;
+
+    opacity:
+        0;
+
+    transition:
+        .25s;
+}
+
+.gallery-photo:hover
+.delete-photo {
+
+    opacity:
+        1;
+}
+
+.empty-gallery {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        50px 20px;
+
+    text-align:
+        center;
+
+    color:
+        #9a7153;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        40px 20px;
+
+    text-align:
+        center;
+
+    background:
+        #3c1c0c;
+
+    color:
+        #ffe6c7;
+}
+
+footer strong {
+
+    color:
+        #ffb347;
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particle {
+
+    position:
+        fixed;
+
+    top:
+        -20px;
+
+    pointer-events:
+        none;
+
+    z-index:
+        999;
+
+    animation:
+        particleFall
+        linear
+        forwards;
+}
+
+
+/* =========================================================
+   GENERAL ANIMATIONS
+========================================================= */
+
+@keyframes particleFall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity:
+            0;
+    }
+
+}
+
+@keyframes floatFlower {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-20px)
+            rotate(8deg);
+    }
+
+}
+
+@keyframes ganeshaPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.05);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .organizer-grid,
+    .contributor-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .darshan-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .remote-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .nav-links {
+
+        display:
+            none;
+    }
+
+    .countdown {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .schedule-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .gallery-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .contributor-summary {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    section {
+
+        padding:
+            70px 5%;
+    }
+
+    .organizer-grid,
+    .contributor-grid,
+    .darshan-grid,
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .ganesha {
+
+        width:
+            145px;
+
+        height:
+            145px;
+    }
+
+    .ganesha span {
+
+        font-size:
+            5rem;
+    }
+
+    .hero-buttons {
+
+        flex-direction:
+            column;
+    }
+
+    .hero-btn {
+
+        text-align:
+            center;
+    }
+
+    .gallery-photo {
+
+        height:
+            280px;
+    }
+
+    .summary-box {
+
+        padding:
+            16px;
+    }
+
+}
+
+@media (hover:none) and (pointer:coarse) {
+
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select {
+
+        cursor:
+            auto !important;
+    }
+
+    #mushikaCursor {
+
+        display:
+            none;
+    }
+
+}
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     RUNNING MUSHIKA
+========================================================= -->
+
+<div id="mushikaCursor">
+
+<svg
+    id="mushikaSvg"
+    viewBox="0 0 220 150"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+>
+
+    <g class="mushika-tail-path">
+
+        <path
+            d="
+                M63 100
+                C35 102,
+                  20 112,
+                  7 125
+                C25 121,
+                  40 108,
+                  71 91
+            "
+            fill="none"
+            stroke="#6c4532"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+
+    </g>
+
+
+    <g class="mushika-run-body">
+
+
+        <!-- Back leg 1 -->
+
+        <g class="back-leg-a">
+
+            <path
+                d="
+                    M79 93
+                    C69 108,
+                      59 119,
+                      49 127
+                "
+                fill="none"
+                stroke="#754633"
+                stroke-width="8"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
+                    M50 127
+                    L43 137
+                "
+                fill="none"
+                stroke="#754633"
+                stroke-width="5"
+                stroke-linecap="round"
+            />
+
+        </g>
+
+
+        <!-- Back leg 2 -->
+
+        <g class="back-leg-b">
+
+            <path
+                d="
+                    M92 92
+                    C84 110,
+                      82 121,
+                      72 130
+                "
+                fill="none"
+                stroke="#82503b"
+                stroke-width="8"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
+                    M73 130
+                    L67 139
+                "
+                fill="none"
+                stroke="#82503b"
+                stroke-width="5"
+                stroke-linecap="round"
+            />
+
+        </g>
+
+
+        <!-- Body -->
+
+        <path
+            d="
+                M63 37
+                C83 19,
+                  122 19,
+                  148 30
+                C167 38,
+                  185 39,
+                  197 52
+                C207 62,
+                  207 75,
+                  196 82
+                C187 88,
+                  168 88,
+                  147 87
+                C123 86,
+                  103 91,
+                  91 96
+                C76 103,
+                  59 100,
+                  49 91
+                C39 82,
+                  38 64,
+                  45 51
+                C49 44,
+                  55 40,
+                  63 37
+            "
+            fill="#655c58"
+            stroke="#4a403c"
+            stroke-width="3"
+        />
+
+
+        <!-- Belly -->
+
+        <path
+            d="
+                M84 82
+                C107 87,
+                  130 77,
+                  151 78
+            "
+            fill="none"
+            stroke="#77706c"
+            stroke-width="4"
+            stroke-linecap="round"
+            opacity=".7"
+        />
+
+
+        <!-- Front leg 1 -->
+
+        <g class="front-leg-a">
+
+            <path
+                d="
+                    M165 76
+                    C176 88,
+                      187 95,
+                      200 97
+                "
+                fill="none"
+                stroke="#754633"
+                stroke-width="8"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
+                    M199 97
+                    L210 98
+                "
+                fill="none"
+                stroke="#754633"
+                stroke-width="5"
+                stroke-linecap="round"
+            />
+
+        </g>
+
+
+        <!-- Front leg 2 -->
+
+        <g class="front-leg-b">
+
+            <path
+                d="
+                    M157 70
+                    C168 77,
+                      177 82,
+                      188 83
+                "
+                fill="none"
+                stroke="#855440"
+                stroke-width="7"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="
+                    M188 83
+                    L199 82
+                "
+                fill="none"
+                stroke="#855440"
+                stroke-width="4"
+                stroke-linecap="round"
+            />
+
+        </g>
+
+
+        <!-- Head -->
+
+        <path
+            d="
+                M173 42
+                C181 31,
+                  195 29,
+                  204 37
+                C211 43,
+                  214 54,
+                  210 64
+                C207 72,
+                  199 77,
+                  190 75
+                L175 70
+                C168 64,
+                  167 52,
+                  173 42
+            "
+            fill="#6c6461"
+            stroke="#4a403c"
+            stroke-width="3"
+        />
+
+
+        <!-- Ear -->
+
+        <ellipse
+            cx="188"
+            cy="36"
+            rx="10"
+            ry="13"
+            fill="#9b7669"
+            stroke="#4a403c"
+            stroke-width="3"
+        />
+
+        <ellipse
+            cx="188"
+            cy="36"
+            rx="5"
+            ry="8"
+            fill="#c89a8c"
+        />
+
+
+        <!-- Eye -->
+
+        <circle
+            cx="201"
+            cy="49"
+            r="3.5"
+            fill="#160c09"
+        />
+
+
+        <!-- Nose -->
+
+        <circle
+            cx="211"
+            cy="63"
+            r="4"
+            fill="#24110c"
+        />
+
+
+        <!-- Mouth -->
+
+        <path
+            d="
+                M208 69
+                C201 72,
+                  195 70,
+                  190 68
+            "
+            fill="none"
+            stroke="#35211a"
+            stroke-width="2.5"
+            stroke-linecap="round"
+        />
+
+
+        <!-- Whiskers -->
+
+        <g class="mushika-whiskers">
+
+            <path
+                d="M207 59 L220 55"
+                stroke="#4a403c"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M208 63 L221 63"
+                stroke="#4a403c"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+
+            <path
+                d="M207 67 L220 71"
+                stroke="#4a403c"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+
+        </g>
+
+
+        <!-- Small modak -->
+
+        <g transform="translate(47 32)">
+
+            <path
+                d="
+                    M0 16
+                    L5 2
+                    L18 2
+                    L23 16
+                    Z
+                "
+                fill="#f3a53d"
+            />
+
+            <path
+                d="
+                    M5 4
+                    C8 8,
+                      15 8,
+                      18 4
+                "
+                fill="none"
+                stroke="#d47513"
+                stroke-width="2"
+            />
+
+        </g>
+
+    </g>
+
+</svg>
+
+</div>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav>
+
+    <div class="logo">
+        Mittapalli Village Association | Ganpati Bappa Moriya  🐘
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#schedule">
+                Programs
+            </a>
+        </li>
+
+        <li>
+            <a href="#organizers">
+                Organizers
+            </a>
+        </li>
+
+        <li>
+            <a href="#contributors">
+                Contributors
+            </a>
+        </li>
+
+        <li>
+            <a href="#darshan">
+                Darshan
+            </a>
+        </li>
+
+        <li>
+            <a href="#memories">
+                Photos
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header
+    class="hero"
+    id="home"
+>
+
+    <div class="floating flower1">
+        🌺
+    </div>
+
+    <div class="floating flower2">
+        🌸
+    </div>
+
+    <div class="floating flower3">
+        🌼
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            🙏 Our Ganesh Utsav • <span id="heroYear"></span>
+        </div>
+
+
+        <div class="ganesha">
+            <span>
+                🐘
+            </span>
+        </div>
+
+
+        <h1>
+            Vinayaka Chaturthi
+        </h1>
+
+
+        <h2>
+            Ganpati Bappa Morya! 🙏
+        </h2>
+
+
+        <p>
+            Welcome to our <span id="heroYearText"></span>
+            Ganesh Utsav celebration — a week of
+            devotion, friendship, programs, seva,
+            Darshan and unforgettable memories.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#schedule"
+                class="hero-btn"
+            >
+                📅 View Weekly Programs
+            </a>
+
+
+            <a
+                href="#qr"
+                class="hero-btn secondary"
+            >
+                📱 Share Festival
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     COUNTDOWN
+========================================================= -->
+
+<section
+    class="countdown-section"
+    id="countdown"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Coming Together
+        </span>
+
+        <h2>
+            🎉 <span id="countdownYear"></span> Festival Countdown
+        </h2>
+
+        <p>
+            The countdown to our celebration has begun!
+        </p>
+
+    </div>
+
+
+    <div class="countdown">
+
+        <div class="time-box">
+
+            <h3 id="days">
+                00
+            </h3>
+
+            <span>
+                Days
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <h3 id="hours">
+                00
+            </h3>
+
+            <span>
+                Hours
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <h3 id="minutes">
+                00
+            </h3>
+
+            <span>
+                Minutes
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <h3 id="seconds">
+                00
+            </h3>
+
+            <span>
+                Seconds
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WEEKLY PROGRAMS
+========================================================= -->
+
+<section
+    class="schedule"
+    id="schedule"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Seven Days of Celebration
+        </span>
+
+        <h2>
+            📅 One-Week Festival Programs
+        </h2>
+
+        <p>
+            Explore the complete schedule of
+            programs, pujas, cultural activities,
+            family events and Visarjan.
+        </p>
+
+    </div>
+
+
+    <div
+        class="schedule-grid"
+        id="scheduleGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     HIGHLIGHT
+========================================================= -->
+
+<section class="highlight">
+
+    <div class="highlight-content">
+
+        <h2>
+            🙏 Everyone Is Part of the Celebration
+        </h2>
+
+        <p>
+            Whether you are helping organize the festival,
+            contributing your resources, attending in person,
+            or watching from another city or country,
+            you are part of our Ganpati family.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ORGANIZING COMMITTEE
+========================================================= -->
+
+<section
+    class="organizers"
+    id="organizers"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Festival Management
+        </span>
+
+        <h2>
+            👥 Organizing Committee
+        </h2>
+
+        <p>
+            Meet the people responsible for planning,
+            coordinating and managing the festival.
+        </p>
+
+    </div>
+
+
+    <div
+        class="organizer-grid"
+        id="organizerGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTRIBUTORS / DONORS
+========================================================= -->
+
+<section
+    class="contributors"
+    id="contributors"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Festival Support
+        </span>
+
+        <h2>
+            🌺 Contributors & Donors
+        </h2>
+
+        <p>
+            Our heartfelt thanks to everyone who
+            supported this festival with their
+            generous contributions and seva.
+        </p>
+
+    </div>
+
+
+    <div class="contributor-summary">
+
+        <div class="summary-box">
+
+            <span
+                class="summary-number"
+                id="contributorCount"
+            >
+                0
+            </span>
+
+            <span class="summary-label">
+                Contributors
+            </span>
+
+        </div>
+
+
+        <div class="summary-box">
+
+            <span
+                class="summary-number"
+                id="totalContribution"
+            >
+                ₹0
+            </span>
+
+            <span class="summary-label">
+                Total Contributions
+            </span>
+
+        </div>
+
+
+        <div class="summary-box">
+
+            <span
+                class="summary-number"
+                id="programCount"
+            >
+                0
+            </span>
+
+            <span class="summary-label">
+                Festival Programs
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="contributor-grid"
+        id="contributorGrid"
+    ></div>
+
+
+    <div class="thank-you">
+
+        🙏 Every contribution, big or small,
+        helps us bring the celebration to life.
+        Thank you for your generous support.
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GANESH DARSHAN
+========================================================= -->
+
+<section
+    class="darshan"
+    id="darshan"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Daily Blessings
+        </span>
+
+        <h2>
+            🐘 Ganesh Darshan
+        </h2>
+
+        <p>
+            See Ganesh Darshan and festival moments
+            throughout the week.
+        </p>
+
+    </div>
+
+
+    <div class="darshan-intro">
+
+        Friends who cannot attend the festival
+        from far-away places can visit this section
+        to experience Darshan through photos.
+
+    </div>
+
+
+    <div
+        class="darshan-grid"
+        id="darshanGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     LIVE DARSHAN
+========================================================= -->
+
+<section
+    class="remote"
+    id="remote"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            For Friends Far Away
+        </span>
+
+        <h2>
+            📺 Live Darshan & Remote Viewing
+        </h2>
+
+        <p>
+            Couldn't travel to the festival?
+            Stay connected from wherever you are.
+        </p>
+
+    </div>
+
+
+    <div class="remote-grid">
+
+        <div
+            class="live-box"
+            id="liveContainer"
+        ></div>
+
+
+        <div class="remote-info">
+
+            <h3>
+                🌍 You Are Still With Us
+            </h3>
+
+            <p>
+                Friends and relatives who cannot
+                physically attend can use this page
+                to watch the festival, see Ganesh
+                Darshan and follow the programs.
+            </p>
+
+
+            <div class="remote-list">
+
+                <div>
+                    🙏 Daily Ganesh Darshan
+                </div>
+
+                <div>
+                    📺 Live Aarti / Program Stream
+                </div>
+
+                <div>
+                    🎵 Special Cultural Programs
+                </div>
+
+                <div>
+                    📸 Daily Photos & Memories
+                </div>
+
+                <div>
+                    🌺 Visarjan Moments
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QR CODE
+========================================================= -->
+
+<section
+    class="qr-section"
+    id="qr"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Share With Everyone
+        </span>
+
+        <h2>
+            📱 Scan to Visit Our Festival Website
+        </h2>
+
+        <p>
+            Print this QR code on posters, invitation
+            cards, banners or share it on WhatsApp.
+        </p>
+
+    </div>
+
+
+    <div class="qr-box">
+
+        <h3>
+            Scan & Join Our Ganpati Celebration
+        </h3>
+
+
+        <p>
+            Open your phone camera and scan the QR code.
+        </p>
+
+
+        <div id="qrcode"></div>
+
+
+        <div
+            class="qr-url"
+            id="qrUrlText"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FRIENDS PHOTO GALLERY
+========================================================= -->
+
+<section
+    class="memories"
+    id="memories"
+>
+
+    <div class="section-title">
+
+        <span class="section-label">
+            Our Memories
+        </span>
+
+        <h2>
+            📸 Friends' Festival Photo Gallery
+        </h2>
+
+        <p>
+            Everyone can add their favorite
+            festival memories.
+        </p>
+
+    </div>
+
+
+    <div
+        class="upload-area"
+        id="uploadArea"
+    >
+
+        <div class="upload-icon">
+            📷
+        </div>
+
+
+        <h3>
+            Add Your Festival Photos
+        </h3>
+
+
+        <p>
+            Choose photos from your phone or computer.
+            Photos are reviewed before appearing publicly.
+        </p>
+
+        <div class="upload-details">
+            <input id="uploaderName" type="text" maxlength="60" placeholder="Your name (optional)">
+            <input id="photoCaption" type="text" maxlength="140" placeholder="Caption (optional)">
+        </div>
+
+
+        <label
+            for="photoInput"
+            class="upload-button"
+        >
+            📸 Choose Photos
+        </label>
+
+
+        <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            multiple
+        >
+
+    </div>
+
+
+    <div id="uploadStatus" class="upload-status" aria-live="polite"></div>
+
+    <div
+        class="gallery-grid"
+        id="galleryGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        Vinayaka Chaturthi
+        <span id="footerYear"></span>
+    </p>
+
+    <p style="margin-top:10px;">
+
+        Made with ❤️ by our Ganpati family
+
+    </p>
+
+    <p style="margin-top:10px;">
+
+        <strong>
+            Ganpati Bappa Morya! 🌺
+        </strong>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   FESTIVAL SETTINGS
+========================================================= */
+
+/*
+   CHANGE ONLY THESE SETTINGS FOR A NEW YEAR.
+*/
+
+const FESTIVAL_YEAR = 2026;
+
+
+/*
+   Use your actual festival opening date/time here.
+*/
+
+const FESTIVAL_DATE =
+    "August 27, 2026 18:00:00";
+
+
+/*
+   IMPORTANT:
+   Replace this with the real public URL of your
+   website after hosting it.
+
+   Example:
+
+   https://myganpati2026.com/
+
+   The QR code will automatically use this URL.
+*/
+
+const WEBSITE_URL =
+    "https://sreenivas-reddy9542.github.io/ganpati-festival-2026/";
+
+
+/*
+   Add your YouTube Live EMBED URL here.
+
+   Example:
+
+   https://www.youtube.com/embed/YOUR_VIDEO_ID
+*/
+
+const LIVE_DARSHAN_URL =
+    "";
+
+/* =========================================================
+   SHARED PHOTO GALLERY (SUPABASE)
+   Create a Supabase project and paste the Project URL and
+   anon/public key below. Do NOT paste a service-role key here.
+========================================================= */
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+const MAX_UPLOAD_MB = 10;
+
+
+
+/* =========================================================
+   ORGANIZING COMMITTEE
+========================================================= */
+
+const organizingCommittee = [
+
+    {
+        name:
+            "Ramesh Kumar",
+
+        photo:
+            "images/organizers/ramesh.jpg",
+
+        role:
+            "President",
+
+        responsibility:
+            "Provides overall leadership and coordinates major festival decisions.",
+
+        badge:
+            "Festival Leadership"
+    },
+
+
+    {
+        name:
+            "Suresh",
+
+        photo:
+            "images/organizers/suresh.jpg",
+
+        role:
+            "Secretary",
+
+        responsibility:
+            "Coordinates meetings, communication, schedules and official arrangements.",
+
+        badge:
+            "Administration"
+    },
+
+
+    {
+        name:
+            "Arjun",
+
+        photo:
+            "images/organizers/arjun.jpg",
+
+        role:
+            "Program Coordinator",
+
+        responsibility:
+            "Plans and coordinates all cultural and entertainment programs.",
+
+        badge:
+            "Programs"
+    },
+
+
+    {
+        name:
+            "Anitha",
+
+        photo:
+            "images/organizers/anitha.jpg",
+
+        role:
+            "Puja Coordinator",
+
+        responsibility:
+            "Coordinates puja, aarti, devotional arrangements and rituals.",
+
+        badge:
+            "Puja Seva"
+    },
+
+
+    {
+        name:
+            "Karthik",
+
+        photo:
+            "images/organizers/karthik.jpg",
+
+        role:
+            "Decoration Coordinator",
+
+        responsibility:
+            "Coordinates mandap design, decoration, flowers and lighting.",
+
+        badge:
+            "Decoration"
+    },
+
+
+    {
+        name:
+            "Meera",
+
+        photo:
+            "images/organizers/meera.jpg",
+
+        role:
+            "Volunteer Coordinator",
+
+        responsibility:
+            "Organizes volunteers and coordinates day-to-day festival support.",
+
+        badge:
+            "Volunteers"
+    },
+
+
+    {
+        name:
+            "Vikram",
+
+        photo:
+            "images/organizers/vikram.jpg",
+
+        role:
+            "Media Coordinator",
+
+        responsibility:
+            "Manages photos, videos, website updates and online communication.",
+
+        badge:
+            "Media"
+    },
+
+
+    {
+        name:
+            "Priya",
+
+        photo:
+            "images/organizers/priya.jpg",
+
+        role:
+            "Food & Prasadam Coordinator",
+
+        responsibility:
+            "Coordinates prasadam, refreshments and food distribution.",
+
+        badge:
+            "Annadanam"
+    },
+
+
+    {
+        name:
+            "Mahesh",
+
+        photo:
+            "images/organizers/mahesh.jpg",
+
+        role:
+            "Logistics Coordinator",
+
+        responsibility:
+            "Coordinates equipment, transport, seating and festival logistics.",
+
+        badge:
+            "Logistics"
+    }
+
+];
+
+
+/* =========================================================
+   CONTRIBUTORS / DONORS
+=========================================================
+
+   IMPORTANT:
+   "amount" is a NUMBER so the website can calculate
+   the total automatically.
+
+   Example:
+   amount: 25000
+
+========================================================= */
+
+const contributors = [
+
+    {
+        name:
+            "Ravi Kumar",
+
+        photo:
+            "images/contributors/ravi.jpg",
+
+        amount:
+            25000,
+
+        category:
+            "Festival Decoration",
+
+        contribution:
+            "Supported the mandap decoration, flowers and lighting arrangements.",
+
+        icon:
+            "🌺"
+    },
+
+
+    {
+        name:
+            "Priya Sharma",
+
+        photo:
+            "images/contributors/priya.jpg",
+
+        amount:
+            15000,
+
+        category:
+            "Food Seva",
+
+        contribution:
+            "Supported prasadam, sweets and refreshments for the celebration.",
+
+        icon:
+            "🍛"
+    },
+
+
+    {
+        name:
+            "Arjun Reddy",
+
+        photo:
+            "images/contributors/arjun.jpg",
+
+        amount:
+            10000,
+
+        category:
+            "Cultural Programs",
+
+        contribution:
+            "Supported cultural programs, music and children's activities.",
+
+        icon:
+            "🎵"
+    },
+
+
+    {
+        name:
+            "Vijay Kumar",
+
+        photo:
+            "images/contributors/vijay.jpg",
+
+        amount:
+            20000,
+
+        category:
+            "Equipment Support",
+
+        contribution:
+            "Provided support for sound, lighting and festival equipment.",
+
+        icon:
+            "🎤"
+    },
+
+
+    {
+        name:
+            "Sneha",
+
+        photo:
+            "images/contributors/sneha.jpg",
+
+        amount:
+            10000,
+
+        category:
+            "Puja Seva",
+
+        contribution:
+            "Supported puja materials, flowers and devotional arrangements.",
+
+        icon:
+            "🪔"
+    },
+
+
+    {
+        name:
+            "Karthik",
+
+        photo:
+            "images/contributors/karthik.jpg",
+
+        amount:
+            5000,
+
+        category:
+            "Children's Programs",
+
+        contribution:
+            "Supported prizes and materials for children's activities.",
+
+        icon:
+            "🎨"
+    }
+
+];
+
+
+/* =========================================================
+   WEEKLY PROGRAMS
+========================================================= */
+
+const weeklySchedule = [
+
+    {
+        day:
+            "Day 1",
+
+        date:
+            "Festival Opening",
+
+        programs: [
+
+            {
+                time:
+                    "5:00 PM",
+
+                name:
+                    "Ganesh Sthapana"
+            },
+
+
+            {
+                time:
+                    "6:30 PM",
+
+                name:
+                    "Pran Pratishtha & Puja"
+            },
+
+
+            {
+                time:
+                    "7:30 PM",
+
+                name:
+                    "First Aarti"
+            },
+
+
+            {
+                time:
+                    "8:00 PM",
+
+                name:
+                    "Prasadam"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 2",
+
+        date:
+            "Devotional Day",
+
+        programs: [
+
+            {
+                time:
+                    "7:00 AM",
+
+                name:
+                    "Morning Aarti"
+            },
+
+
+            {
+                time:
+                    "6:00 PM",
+
+                name:
+                    "Bhajan & Ganesh Stories"
+            },
+
+
+            {
+                time:
+                    "7:30 PM",
+
+                name:
+                    "Evening Aarti"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 3",
+
+        date:
+            "Children's Day",
+
+        programs: [
+
+            {
+                time:
+                    "4:00 PM",
+
+                name:
+                    "Children's Drawing Competition"
+            },
+
+
+            {
+                time:
+                    "5:30 PM",
+
+                name:
+                    "Kids Cultural Program"
+            },
+
+
+            {
+                time:
+                    "7:00 PM",
+
+                name:
+                    "Aarti"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 4",
+
+        date:
+            "Cultural Evening",
+
+        programs: [
+
+            {
+                time:
+                    "5:30 PM",
+
+                name:
+                    "Classical Dance"
+            },
+
+
+            {
+                time:
+                    "6:30 PM",
+
+                name:
+                    "Music Program"
+            },
+
+
+            {
+                time:
+                    "8:00 PM",
+
+                name:
+                    "Special Aarti"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 5",
+
+        date:
+            "Friends & Family Day",
+
+        programs: [
+
+            {
+                time:
+                    "4:00 PM",
+
+                name:
+                    "Friends Meet & Games"
+            },
+
+
+            {
+                time:
+                    "6:00 PM",
+
+                name:
+                    "Group Activities"
+            },
+
+
+            {
+                time:
+                    "7:30 PM",
+
+                name:
+                    "Aarti & Prasadam"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 6",
+
+        date:
+            "Grand Celebration",
+
+        programs: [
+
+            {
+                time:
+                    "5:00 PM",
+
+                name:
+                    "Special Cultural Program"
+            },
+
+
+            {
+                time:
+                    "6:30 PM",
+
+                name:
+                    "Music & Dance"
+            },
+
+
+            {
+                time:
+                    "8:00 PM",
+
+                name:
+                    "Grand Aarti"
+            },
+
+
+            {
+                time:
+                    "8:30 PM",
+
+                name:
+                    "Mahaprasadam"
+            }
+
+        ]
+    },
+
+
+    {
+        day:
+            "Day 7",
+
+        date:
+            "Visarjan Day",
+
+        programs: [
+
+            {
+                time:
+                    "9:00 AM",
+
+                name:
+                    "Final Morning Aarti"
+            },
+
+
+            {
+                time:
+                    "4:00 PM",
+
+                name:
+                    "Ganpati Visarjan Preparation"
+            },
+
+
+            {
+                time:
+                    "5:00 PM",
+
+                name:
+                    "Visarjan Procession"
+            },
+
+
+            {
+                time:
+                    "7:30 PM",
+
+                name:
+                    "Farewell Aarti"
+            }
+
+        ]
+    }
+
+];
+
+
+/* =========================================================
+   GANESH DARSHAN
+========================================================= */
+
+const darshanPhotos = [
+
+    {
+        title:
+            "Day 1 • Sthapana Darshan",
+
+        image:
+            "images/darshan/day1.jpg",
+
+        description:
+            "The beautiful arrival and Sthapana of our beloved Ganpati."
+    },
+
+
+    {
+        title:
+            "Day 2 • Morning Darshan",
+
+        image:
+            "images/darshan/day2.jpg",
+
+        description:
+            "Morning Darshan and the peaceful beginning of the celebration."
+    },
+
+
+    {
+        title:
+            "Day 3 • Children's Celebration",
+
+        image:
+            "images/darshan/day3.jpg",
+
+        description:
+            "Ganpati blessings during our children's special programs."
+    },
+
+
+    {
+        title:
+            "Day 4 • Cultural Evening",
+
+        image:
+            "images/darshan/day4.jpg",
+
+        description:
+            "A beautiful evening of devotion, music and cultural programs."
+    },
+
+
+    {
+        title:
+            "Day 5 • Family Darshan",
+
+        image:
+            "images/darshan/day5.jpg",
+
+        description:
+            "Friends and families coming together for Ganesh Darshan."
+    },
+
+
+    {
+        title:
+            "Day 6 • Grand Darshan",
+
+        image:
+            "images/darshan/day6.jpg",
+
+        description:
+            "Our grand celebration and special Aarti."
+    },
+
+
+    {
+        title:
+            "Day 7 • Visarjan Darshan",
+
+        image:
+            "images/darshan/day7.jpg",
+
+        description:
+            "Final Darshan and farewell before Visarjan."
+    }
+
+];
+
+
+/* =========================================================
+   YEAR DISPLAY
+========================================================= */
+
+document.getElementById(
+    "heroYear"
+).textContent =
+    FESTIVAL_YEAR;
+
+
+document.getElementById(
+    "heroYearText"
+).textContent =
+    FESTIVAL_YEAR;
+
+
+document.getElementById(
+    "countdownYear"
+).textContent =
+    FESTIVAL_YEAR;
+
+
+document.getElementById(
+    "footerYear"
+).textContent =
+    FESTIVAL_YEAR;
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+const festivalDate =
+    new Date(
+        FESTIVAL_DATE
+    ).getTime();
+
+
+function updateCountdown() {
+
+    const now =
+        new Date().getTime();
+
+
+    const distance =
+        festivalDate - now;
+
+
+    if (distance <= 0) {
+
+        document.getElementById(
+            "days"
+        ).textContent =
+            "00";
+
+
+        document.getElementById(
+            "hours"
+        ).textContent =
+            "00";
+
+
+        document.getElementById(
+            "minutes"
+        ).textContent =
+            "00";
+
+
+        document.getElementById(
+            "seconds"
+        ).textContent =
+            "00";
+
+
+        return;
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60 * 60 * 24)
+            ) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60 * 60)
+            ) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                distance %
+                (1000 * 60)
+            ) /
+            1000
+        );
+
+
+    document.getElementById(
+        "days"
+    ).textContent =
+        String(days).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "hours"
+    ).textContent =
+        String(hours).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "minutes"
+    ).textContent =
+        String(minutes).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "seconds"
+    ).textContent =
+        String(seconds).padStart(
+            2,
+            "0"
+        );
+
+}
+
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =========================================================
+   WEEKLY SCHEDULE RENDER
+========================================================= */
+
+const scheduleGrid =
+    document.getElementById(
+        "scheduleGrid"
+    );
+
+
+let totalPrograms =
+    0;
+
+
+weeklySchedule.forEach(
+    (day,index) => {
+
+        totalPrograms +=
+            day.programs.length;
+
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "day-card";
+
+
+        let programsHTML =
+            "";
+
+
+        day.programs.forEach(
+            program => {
+
+                programsHTML += `
+
+                    <div class="program">
+
+                        <div class="program-time">
+                            ${program.time}
+                        </div>
+
+                        <div class="program-name">
+                            ${program.name}
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        card.innerHTML = `
+
+            <div class="day-top">
+
+                <div class="day-number">
+                    ${index + 1}
+                </div>
+
+                <div class="day-heading">
+
+                    <h3>
+                        ${day.day}
+                    </h3>
+
+                    <p>
+                        ${day.date}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="program-list">
+                ${programsHTML}
+            </div>
+
+        `;
+
+
+        scheduleGrid.appendChild(
+            card
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "programCount"
+).textContent =
+    totalPrograms;
+
+
+/* =========================================================
+   ORGANIZING COMMITTEE RENDER
+========================================================= */
+
+const organizerGrid =
+    document.getElementById(
+        "organizerGrid"
+    );
+
+
+organizingCommittee.forEach(
+    person => {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "organizer-card";
+
+
+        card.innerHTML = `
+
+            <img
+                class="organizer-photo"
+                src="${person.photo}"
+                alt="${person.name}"
+                onerror="
+                    this.src =
+                    'https://placehold.co/300x300/ffd6a0/8b4513?text=Organizer';
+                "
+            >
+
+
+            <h3>
+                ${person.name}
+            </h3>
+
+
+            <div class="organizer-role">
+                ${person.role}
+            </div>
+
+
+            <p>
+                ${person.responsibility}
+            </p>
+
+
+            <span class="organizer-badge">
+                ${person.badge}
+            </span>
+
+        `;
+
+
+        organizerGrid.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTRIBUTORS RENDER
+========================================================= */
+
+const contributorGrid =
+    document.getElementById(
+        "contributorGrid"
+    );
+
+
+const totalContribution =
+    contributors.reduce(
+        (
+            total,
+            person
+        ) =>
+            total +
+            Number(
+                person.amount
+            ),
+        0
+    );
+
+
+document.getElementById(
+    "contributorCount"
+).textContent =
+    contributors.length;
+
+
+document.getElementById(
+    "totalContribution"
+).textContent =
+    totalContribution.toLocaleString(
+        "en-IN",
+        {
+            style:
+                "currency",
+
+            currency:
+                "INR",
+
+            maximumFractionDigits:
+                0
+        }
+    );
+
+
+contributors.forEach(
+    person => {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "contributor-card";
+
+
+        card.innerHTML = `
+
+            <div class="contributor-photo-wrap">
+
+                <img
+                    class="contributor-photo"
+                    src="${person.photo}"
+                    alt="${person.name}"
+                    onerror="
+                        this.src =
+                        'https://placehold.co/300x300/ffd6a0/8b4513?text=Photo';
+                    "
+                >
+
+                <div class="seva-icon">
+                    ${person.icon}
+                </div>
+
+            </div>
+
+
+            <h3>
+                ${person.name}
+            </h3>
+
+
+            <div class="contributor-category">
+                ${person.category}
+            </div>
+
+
+            <div class="contribution-amount">
+
+                ${Number(
+                    person.amount
+                ).toLocaleString(
+                    "en-IN",
+                    {
+                        style:
+                            "currency",
+
+                        currency:
+                            "INR",
+
+                        maximumFractionDigits:
+                            0
+                    }
+                )}
+
+            </div>
+
+
+            <p>
+                ${person.contribution}
+            </p>
+
+        `;
+
+
+        contributorGrid.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   DARSHAN RENDER
+========================================================= */
+
+const darshanGrid =
+    document.getElementById(
+        "darshanGrid"
+    );
+
+
+darshanPhotos.forEach(
+    darshan => {
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "darshan-card";
+
+
+        card.innerHTML = `
+
+            <img
+                class="darshan-photo"
+                src="${darshan.image}"
+                alt="${darshan.title}"
+                onerror="
+                    this.src = 'images/placeholders/darshan.svg';
+                "
+            >
+
+
+            <div class="darshan-info">
+
+                <h3>
+                    ${darshan.title}
+                </h3>
+
+
+                <p>
+                    ${darshan.description}
+                </p>
+
+            </div>
+
+        `;
+
+
+        darshanGrid.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LIVE DARSHAN
+========================================================= */
+
+const liveContainer =
+    document.getElementById(
+        "liveContainer"
+    );
+
+
+if (
+    LIVE_DARSHAN_URL.trim() !== ""
+) {
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+
+    iframe.className =
+        "live-video";
+
+
+    iframe.src =
+        LIVE_DARSHAN_URL;
+
+
+    iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+
+    iframe.allowFullscreen =
+        true;
+
+
+    liveContainer.appendChild(
+        iframe
+    );
+
+} else {
+
+    liveContainer.innerHTML = `
+
+        <div class="live-placeholder">
+
+            <div class="live-placeholder-icon">
+                📺
+            </div>
+
+            <h3>
+                Live Darshan Coming Soon
+            </h3>
+
+            <p>
+                Add your YouTube Live embed URL
+                in the settings near the top of
+                this file.
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   QR CODE
+========================================================= */
+
+const qrContainer =
+    document.getElementById(
+        "qrcode"
+    );
+
+
+const qrUrlText =
+    document.getElementById(
+        "qrUrlText"
+    );
+
+
+qrUrlText.textContent =
+    WEBSITE_URL;
+
+
+if (
+    typeof QRCode !==
+    "undefined"
+) {
+
+    new QRCode(
+        qrContainer,
+        {
+            text:
+                WEBSITE_URL,
+
+            width:
+                190,
+
+            height:
+                190,
+
+            colorDark:
+                "#7d3300",
+
+            colorLight:
+                "#ffffff",
+
+            correctLevel:
+                QRCode.CorrectLevel.H
+        }
+    );
+
+} else {
+
+    qrContainer.innerHTML = `
+
+        <p>
+            QR library could not load.
+            Please connect to the internet
+            and refresh the page.
+        </p>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FALLING FLOWERS
+========================================================= */
+
+const flowers = [
+    "🌺",
+    "🌸",
+    "🌼",
+    "✨",
+    "🪔",
+    "🌿"
+];
+
+
+function createParticle() {
+
+    const particle =
+        document.createElement(
+            "div"
+        );
+
+
+    particle.className =
+        "particle";
+
+
+    particle.textContent =
+        flowers[
+            Math.floor(
+                Math.random() *
+                flowers.length
+            )
+        ];
+
+
+    particle.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    particle.style.fontSize =
+        (
+            15 +
+            Math.random() *
+            20
+        ) +
+        "px";
+
+
+    particle.style.animationDuration =
+        (
+            5 +
+            Math.random() *
+            5
+        ) +
+        "s";
+
+
+    document.body.appendChild(
+        particle
+    );
+
+
+    setTimeout(
+        () =>
+            particle.remove(),
+        10000
+    );
+
+}
+
+
+setInterval(
+    createParticle,
+    700
+);
+
+
+/* =========================================================
+   MUSHIKA MOVEMENT
+========================================================= */
+
+const mushikaCursor =
+    document.getElementById(
+        "mushikaCursor"
+    );
+
+
+const mushika =
+    document.getElementById(
+        "mushikaSvg"
+    );
+
+
+let mouseX =
+    window.innerWidth /
+    2;
+
+
+let mouseY =
+    window.innerHeight /
+    2;
+
+
+let currentX =
+    mouseX;
+
+
+let currentY =
+    mouseY;
+
+
+let previousX =
+    mouseX;
+
+
+let previousY =
+    mouseY;
+
+
+let movementSpeed =
+    0;
+
+
+let facingRight =
+    true;
+
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        mouseX =
+            event.clientX;
+
+        mouseY =
+            event.clientY;
+
+    }
+);
+
+
+function animateMushika() {
+
+    currentX +=
+        (
+            mouseX -
+            currentX
+        ) *
+        .16;
+
+
+    currentY +=
+        (
+            mouseY -
+            currentY
+        ) *
+        .16;
+
+
+    const dx =
+        currentX -
+        previousX;
+
+
+    const dy =
+        currentY -
+        previousY;
+
+
+    const movement =
+        Math.sqrt(
+            dx * dx +
+            dy * dy
+        );
+
+
+    movementSpeed =
+        movementSpeed *
+        .8 +
+        movement *
+        .2;
+
+
+    if (
+        Math.abs(dx) >
+        .7
+    ) {
+
+        facingRight =
+            dx >
+            0;
+
+    }
+
+
+    /*
+       Mushika does NOT grow when
+       hovering or clicking anything.
+
+       Its size remains fixed.
+       Only its direction changes.
+    */
+
+    const directionScale =
+        facingRight
+            ? 1
+            : -1;
+
+
+    mushikaCursor.style.left =
+        currentX +
+        "px";
+
+
+    mushikaCursor.style.top =
+        currentY +
+        "px";
+
+
+    mushika.style.transform =
+        `scaleX(${directionScale})`;
+
+
+    if (
+        movementSpeed >
+        .7
+    ) {
+
+        mushikaCursor.classList.add(
+            "mushika-running"
+        );
+
+    } else {
+
+        mushikaCursor.classList.remove(
+            "mushika-running"
+        );
+
+    }
+
+
+    previousX =
+        currentX;
+
+
+    previousY =
+        currentY;
+
+
+    requestAnimationFrame(
+        animateMushika
+    );
+
+}
+
+
+animateMushika();
+
+
+/* =========================================================
+   SHARED FRIEND PHOTO GALLERY
+   Photos are stored in Supabase and only approved photos are
+   displayed publicly. This replaces browser-only localStorage.
+========================================================= */
+
+const photoInput = document.getElementById("photoInput");
+const galleryGrid = document.getElementById("galleryGrid");
+const uploadArea = document.getElementById("uploadArea");
+const uploadStatus = document.getElementById("uploadStatus");
+const uploaderName = document.getElementById("uploaderName");
+const photoCaption = document.getElementById("photoCaption");
+
+let supabaseClient = null;
+
+function setUploadStatus(message, type = "") {
+    uploadStatus.textContent = message;
+    uploadStatus.className = `upload-status ${type}`;
+}
+
+function gallerySetupReady() {
+    return SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase;
+}
+
+function showEmptyGallery() {
+    galleryGrid.innerHTML = `
+        <div class="empty-gallery">
+            <div style="font-size:3rem;margin-bottom:10px;">📸</div>
+            <p>No approved photos yet.<br>Be the first friend to share a memory!</p>
+        </div>`;
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function renderGallery(photos) {
+    galleryGrid.innerHTML = "";
+    if (!photos.length) {
+        showEmptyGallery();
+        return;
+    }
+
+    for (const photo of photos) {
+        const { data } = supabaseClient.storage
+            .from("festival-photos")
+            .getPublicUrl(photo.storage_path);
+
+        const card = document.createElement("article");
+        card.className = "gallery-photo";
+        card.innerHTML = `
+            <img src="${data.publicUrl}" alt="${escapeHtml(photo.caption || "Vinayaka Chaturthi memory")}" loading="lazy">
+            <div class="gallery-meta">
+                ${photo.caption ? `<strong>${escapeHtml(photo.caption)}</strong>` : ""}
+                ${photo.uploader_name ? `<span>Shared by ${escapeHtml(photo.uploader_name)}</span>` : ""}
+            </div>`;
+        galleryGrid.appendChild(card);
+    }
+}
+
+async function loadApprovedPhotos() {
+    if (!gallerySetupReady()) {
+        showEmptyGallery();
+        setUploadStatus("Photo sharing is ready, but the Supabase connection still needs to be configured.");
+        return;
+    }
+
+    supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    const { data, error } = await supabaseClient
+        .from("festival_photos")
+        .select("id, storage_path, uploader_name, caption, created_at")
+        .eq("status", "approved")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error(error);
+        showEmptyGallery();
+        setUploadStatus("The shared gallery could not be loaded right now. Please try again later.");
+        return;
+    }
+
+    renderGallery(data || []);
+}
+
+async function uploadPhoto(file) {
+    if (!gallerySetupReady()) {
+        setUploadStatus("The shared photo system is not configured yet. Please complete the Supabase setup.");
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        setUploadStatus("Please choose an image file.");
+        return;
+    }
+
+    if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
+        setUploadStatus(`Please keep each photo under ${MAX_UPLOAD_MB} MB.`);
+        return;
+    }
+
+    const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const safeExtension = ["jpg", "jpeg", "png", "webp", "gif"].includes(extension) ? extension : "jpg";
+    const id = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const storagePath = `pending/${id}.${safeExtension}`;
+
+    setUploadStatus("Uploading photo…");
+
+    const { error: uploadError } = await supabaseClient.storage
+        .from("festival-photos")
+        .upload(storagePath, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type
+        });
+
+    if (uploadError) {
+        console.error(uploadError);
+        setUploadStatus("Photo upload failed. Please try again.");
+        return;
+    }
+
+    const { error: insertError } = await supabaseClient
+        .from("festival_photos")
+        .insert({
+            storage_path: storagePath,
+            uploader_name: uploaderName.value.trim() || null,
+            caption: photoCaption.value.trim() || null,
+            status: "pending"
+        });
+
+    if (insertError) {
+        console.error(insertError);
+        await supabaseClient.storage.from("festival-photos").remove([storagePath]);
+        setUploadStatus("The photo was uploaded but could not be submitted for review. Please try again.");
+        return;
+    }
+
+    setUploadStatus("Thank you! Your photo was submitted and is waiting for approval. 🙏");
+}
+
+function processFiles(files) {
+    const list = Array.from(files || []);
+    if (!list.length) return;
+
+    (async () => {
+        for (const file of list) {
+            await uploadPhoto(file);
+        }
+        await loadApprovedPhotos();
+    })();
+}
+
+photoInput.addEventListener("change", event => {
+    processFiles(event.target.files);
+    photoInput.value = "";
+});
+
+uploadArea.addEventListener("dragover", event => {
+    event.preventDefault();
+    uploadArea.classList.add("dragover");
+});
+
+uploadArea.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("dragover");
+});
+
+uploadArea.addEventListener("drop", event => {
+    event.preventDefault();
+    uploadArea.classList.remove("dragover");
+    processFiles(event.dataTransfer.files);
+});
+
+loadApprovedPhotos();
+
+/* =========================================================
+   START
+========================================================= */
+
+console.log(
+    `🐘 Ganpati Bappa Morya! ${FESTIVAL_YEAR} 🐭`
+);
+
+</script>
+
+</body>
+</html>
