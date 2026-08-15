@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3606,7 +3605,7 @@ const FESTIVAL_DATE =
 */
 
 const WEBSITE_URL =
-    "https://yourfestivalwebsite.com/";
+    "https://sreenivas-reddy9542.github.io/ganpati-festival-2026/";
 
 
 /*
@@ -3625,170 +3624,9 @@ const LIVE_DARSHAN_URL =
    ORGANIZING COMMITTEE
 ========================================================= */
 
-const organizingCommittee = [
+const organizingCommittee = [];
 
-    {
-        name:
-            "Ramesh Kumar",
-
-        photo:
-            "images/organizers/ramesh.jpg",
-
-        role:
-            "President",
-
-        responsibility:
-            "Provides overall leadership and coordinates major festival decisions.",
-
-        badge:
-            "Festival Leadership"
-    },
-
-
-    {
-        name:
-            "Suresh",
-
-        photo:
-            "images/organizers/suresh.jpg",
-
-        role:
-            "Secretary",
-
-        responsibility:
-            "Coordinates meetings, communication, schedules and official arrangements.",
-
-        badge:
-            "Administration"
-    },
-
-
-    {
-        name:
-            "Arjun",
-
-        photo:
-            "images/organizers/arjun.jpg",
-
-        role:
-            "Program Coordinator",
-
-        responsibility:
-            "Plans and coordinates all cultural and entertainment programs.",
-
-        badge:
-            "Programs"
-    },
-
-
-    {
-        name:
-            "Anitha",
-
-        photo:
-            "images/organizers/anitha.jpg",
-
-        role:
-            "Puja Coordinator",
-
-        responsibility:
-            "Coordinates puja, aarti, devotional arrangements and rituals.",
-
-        badge:
-            "Puja Seva"
-    },
-
-
-    {
-        name:
-            "Karthik",
-
-        photo:
-            "images/organizers/karthik.jpg",
-
-        role:
-            "Decoration Coordinator",
-
-        responsibility:
-            "Coordinates mandap design, decoration, flowers and lighting.",
-
-        badge:
-            "Decoration"
-    },
-
-
-    {
-        name:
-            "Meera",
-
-        photo:
-            "images/organizers/meera.jpg",
-
-        role:
-            "Volunteer Coordinator",
-
-        responsibility:
-            "Organizes volunteers and coordinates day-to-day festival support.",
-
-        badge:
-            "Volunteers"
-    },
-
-
-    {
-        name:
-            "Vikram",
-
-        photo:
-            "images/organizers/vikram.jpg",
-
-        role:
-            "Media Coordinator",
-
-        responsibility:
-            "Manages photos, videos, website updates and online communication.",
-
-        badge:
-            "Media"
-    },
-
-
-    {
-        name:
-            "Priya",
-
-        photo:
-            "images/organizers/priya.jpg",
-
-        role:
-            "Food & Prasadam Coordinator",
-
-        responsibility:
-            "Coordinates prasadam, refreshments and food distribution.",
-
-        badge:
-            "Annadanam"
-    },
-
-
-    {
-        name:
-            "Mahesh",
-
-        photo:
-            "images/organizers/mahesh.jpg",
-
-        role:
-            "Logistics Coordinator",
-
-        responsibility:
-            "Coordinates equipment, transport, seating and festival logistics.",
-
-        badge:
-            "Logistics"
-    }
-
-];
+/* Organizers are loaded from Supabase. Authorized users manage them in admin.html. */
 
 
 /* =========================================================
@@ -4472,66 +4310,52 @@ document.getElementById(
    ORGANIZING COMMITTEE RENDER
 ========================================================= */
 
-const organizerGrid =
-    document.getElementById(
-        "organizerGrid"
-    );
+const organizerGrid = document.getElementById("organizerGrid");
 
-
-organizingCommittee.forEach(
-    person => {
-
-        const card =
-            document.createElement(
-                "article"
-            );
-
-
-        card.className =
-            "organizer-card";
-
-
-        card.innerHTML = `
-
-            <img
-                class="organizer-photo"
-                src="${person.photo}"
-                alt="${person.name}"
-                onerror="
-                    this.src =
-                    'https://placehold.co/300x300/ffd6a0/8b4513?text=Organizer';
-                "
-            >
-
-
-            <h3>
-                ${person.name}
-            </h3>
-
-
-            <div class="organizer-role">
-                ${person.role}
-            </div>
-
-
-            <p>
-                ${person.responsibility}
-            </p>
-
-
-            <span class="organizer-badge">
-                ${person.badge}
-            </span>
-
-        `;
-
-
-        organizerGrid.appendChild(
-            card
-        );
-
+function renderOrganizers() {
+    organizerGrid.innerHTML = "";
+    const sorted = [...organizingCommittee].sort((a,b) => Number(a.position || 0) - Number(b.position || 0));
+    if (!sorted.length) {
+        organizerGrid.innerHTML = `
+            <div class="organizer-empty" style="grid-column:1/-1;text-align:center;padding:28px;border-radius:18px;background:#fff8ed;border:1px dashed #e8c99f;color:#76543d;">
+                <strong>Organizers will be updated soon 🙏</strong><br>
+                The organizing committee details will be added by the festival administrator.
+            </div>`;
+        return;
     }
-);
+    sorted.forEach(person => {
+        const card = document.createElement("article");
+        card.className = "organizer-card";
+        const photo = person.photo || "https://placehold.co/300x300/ffd6a0/8b4513?text=Organizer";
+        card.innerHTML = `
+            <img class="organizer-photo" src="${escapeHTML(photo)}" alt="${escapeHTML(person.name)}"
+                 onerror="this.src='https://placehold.co/300x300/ffd6a0/8b4513?text=Organizer';">
+            <h3>${escapeHTML(person.name)}</h3>
+            <div class="organizer-role">${escapeHTML(person.role || "Festival Volunteer")}</div>
+            <p>${escapeHTML(person.responsibility || "Supporting the festival and our community.")}</p>
+            <span class="organizer-badge">${escapeHTML(person.badge || "Festival Team")}</span>`;
+        organizerGrid.appendChild(card);
+    });
+}
+
+async function loadOrganizers() {
+    if (!supabaseClient) { renderOrganizers(); return; }
+    const { data, error } = await supabaseClient
+        .from("organizers")
+        .select("id,name,photo,role,responsibility,badge,position")
+        .order("position", { ascending: true });
+    if (error) {
+        console.error("Could not load organizers:", error);
+        renderOrganizers();
+        return;
+    }
+    organizingCommittee.length = 0;
+    organizingCommittee.push(...(data || []));
+    renderOrganizers();
+}
+
+renderOrganizers();
+loadOrganizers();
 
 
 /* =========================================================
@@ -4563,3 +4387,44 @@ async function loadContributors(){
 renderContributors(); loadContributors();
 
 
+
+/* =========================================================
+   MUSHIKA MOUSE FOLLOWER
+========================================================= */
+(function () {
+    const mushika = document.getElementById("mushikaCursor");
+    if (!mushika) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let currentX = mouseX;
+    let currentY = mouseY;
+    let running = false;
+
+    function moveMushika(event) {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        if (!running) {
+            running = true;
+            mushika.classList.add("mushika-running");
+        }
+    }
+
+    document.addEventListener("mousemove", moveMushika, { passive: true });
+    document.addEventListener("mouseenter", moveMushika, { passive: true });
+
+    function animateMushika() {
+        currentX += (mouseX - currentX) * 0.18;
+        currentY += (mouseY - currentY) * 0.18;
+
+        mushika.style.transform =
+            `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+
+        requestAnimationFrame(animateMushika);
+    }
+
+    animateMushika();
+})();
+
+</script>
