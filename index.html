@@ -79,8 +79,8 @@ select {
     left: 0;
     top: 0;
 
-    width: 60px;
-    height: 44px;
+    width: 110px;
+    height: 80px;
 
     pointer-events: none;
 
@@ -3115,7 +3115,7 @@ footer strong {
         </span>
 
         <h2>
-            📅 One-Week Festival Programs
+            📅 Three-Day Festival Programs
         </h2>
 
         <p>
@@ -3655,7 +3655,7 @@ const weeklySchedule = [
             "Day 1",
 
         date:
-            "Festival Opening",
+            "August 27 • Sthapana & Opening",
 
         programs: [
 
@@ -3667,7 +3667,6 @@ const weeklySchedule = [
                     "Ganesh Sthapana"
             },
 
-
             {
                 time:
                     "6:30 PM",
@@ -3676,7 +3675,6 @@ const weeklySchedule = [
                     "Pran Pratishtha & Puja"
             },
 
-
             {
                 time:
                     "7:30 PM",
@@ -3684,7 +3682,6 @@ const weeklySchedule = [
                 name:
                     "First Aarti"
             },
-
 
             {
                 time:
@@ -3703,7 +3700,7 @@ const weeklySchedule = [
             "Day 2",
 
         date:
-            "Devotional Day",
+            "August 28 • Bhakti & Cultural Day",
 
         programs: [
 
@@ -3715,15 +3712,21 @@ const weeklySchedule = [
                     "Morning Aarti"
             },
 
+            {
+                time:
+                    "5:00 PM",
+
+                name:
+                    "Children's & Cultural Programs"
+            },
 
             {
                 time:
-                    "6:00 PM",
+                    "6:30 PM",
 
                 name:
                     "Bhajan & Ganesh Stories"
             },
-
 
             {
                 time:
@@ -3731,6 +3734,14 @@ const weeklySchedule = [
 
                 name:
                     "Evening Aarti"
+            },
+
+            {
+                time:
+                    "8:00 PM",
+
+                name:
+                    "Prasadam"
             }
 
         ]
@@ -3742,172 +3753,7 @@ const weeklySchedule = [
             "Day 3",
 
         date:
-            "Children's Day",
-
-        programs: [
-
-            {
-                time:
-                    "4:00 PM",
-
-                name:
-                    "Children's Drawing Competition"
-            },
-
-
-            {
-                time:
-                    "5:30 PM",
-
-                name:
-                    "Kids Cultural Program"
-            },
-
-
-            {
-                time:
-                    "7:00 PM",
-
-                name:
-                    "Aarti"
-            }
-
-        ]
-    },
-
-
-    {
-        day:
-            "Day 4",
-
-        date:
-            "Cultural Evening",
-
-        programs: [
-
-            {
-                time:
-                    "5:30 PM",
-
-                name:
-                    "Classical Dance"
-            },
-
-
-            {
-                time:
-                    "6:30 PM",
-
-                name:
-                    "Music Program"
-            },
-
-
-            {
-                time:
-                    "8:00 PM",
-
-                name:
-                    "Special Aarti"
-            }
-
-        ]
-    },
-
-
-    {
-        day:
-            "Day 5",
-
-        date:
-            "Friends & Family Day",
-
-        programs: [
-
-            {
-                time:
-                    "4:00 PM",
-
-                name:
-                    "Friends Meet & Games"
-            },
-
-
-            {
-                time:
-                    "6:00 PM",
-
-                name:
-                    "Group Activities"
-            },
-
-
-            {
-                time:
-                    "7:30 PM",
-
-                name:
-                    "Aarti & Prasadam"
-            }
-
-        ]
-    },
-
-
-    {
-        day:
-            "Day 6",
-
-        date:
-            "Grand Celebration",
-
-        programs: [
-
-            {
-                time:
-                    "5:00 PM",
-
-                name:
-                    "Special Cultural Program"
-            },
-
-
-            {
-                time:
-                    "6:30 PM",
-
-                name:
-                    "Music & Dance"
-            },
-
-
-            {
-                time:
-                    "8:00 PM",
-
-                name:
-                    "Grand Aarti"
-            },
-
-
-            {
-                time:
-                    "8:30 PM",
-
-                name:
-                    "Mahaprasadam"
-            }
-
-        ]
-    },
-
-
-    {
-        day:
-            "Day 7",
-
-        date:
-            "Visarjan Day",
+            "August 29 • Visarjan & Farewell",
 
         programs: [
 
@@ -3919,7 +3765,6 @@ const weeklySchedule = [
                     "Final Morning Aarti"
             },
 
-
             {
                 time:
                     "4:00 PM",
@@ -3927,7 +3772,6 @@ const weeklySchedule = [
                 name:
                     "Ganpati Visarjan Preparation"
             },
-
 
             {
                 time:
@@ -3937,13 +3781,12 @@ const weeklySchedule = [
                     "Visarjan Procession"
             },
 
-
             {
                 time:
                     "7:30 PM",
 
                 name:
-                    "Farewell Aarti"
+                    "Farewell Aarti & Mahaprasadam"
             }
 
         ]
@@ -4385,46 +4228,3 @@ async function loadContributors(){
  contributors=data||[];renderContributors();
 }
 renderContributors(); loadContributors();
-
-
-
-/* =========================================================
-   MUSHIKA MOUSE FOLLOWER
-========================================================= */
-(function () {
-    const mushika = document.getElementById("mushikaCursor");
-    if (!mushika) return;
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let currentX = mouseX;
-    let currentY = mouseY;
-    let running = false;
-
-    function moveMushika(event) {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-
-        if (!running) {
-            running = true;
-            mushika.classList.add("mushika-running");
-        }
-    }
-
-    document.addEventListener("mousemove", moveMushika, { passive: true });
-    document.addEventListener("mouseenter", moveMushika, { passive: true });
-
-    function animateMushika() {
-        currentX += (mouseX - currentX) * 0.18;
-        currentY += (mouseY - currentY) * 0.18;
-
-        mushika.style.transform =
-            `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
-
-        requestAnimationFrame(animateMushika);
-    }
-
-    animateMushika();
-})();
-
-</script>
