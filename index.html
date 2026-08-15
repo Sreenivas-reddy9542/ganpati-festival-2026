@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,7 @@
 
 <!-- QR Code Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
@@ -586,17 +588,7 @@ nav {
         infinite;
 }
 
-.ganesha span {
-
-    font-size:
-        7rem;
-
-    filter:
-        drop-shadow(
-            0 5px 5px
-            rgba(0,0,0,.15)
-        );
-}
+.ganesha img { width:160px; height:160px; object-fit:cover; border-radius:50%; filter:drop-shadow(0 5px 5px rgba(0,0,0,.15)); }
 
 .hero h1 {
 
@@ -1285,6 +1277,12 @@ section {
         800;
 }
 
+
+.contributor-admin-link { text-align:center; margin:28px auto 0; }
+.contributor-admin-link a { display:inline-block; padding:10px 16px; border-radius:999px; border:1px solid #e8c69f; background:rgba(255,255,255,.8); color:#8c3900; text-decoration:none; font-weight:800; font-size:.85rem; }
+.contributor-admin-link a:hover { background:#fff; }
+.contributor-empty { max-width:700px; margin:0 auto; padding:45px 25px; text-align:center; background:rgba(255,255,255,.75); border:1px dashed #e8c69f; border-radius:24px; color:#805333; }
+.contributor-empty strong { display:block; color:#8c3900; font-size:1.15rem; margin-bottom:8px; }
 
 /* =========================================================
    CONTRIBUTORS
@@ -2150,49 +2148,6 @@ section {
         );
 }
 
-
-
-.upload-details {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    max-width: 720px;
-    margin: 18px auto 0;
-}
-
-.upload-details input {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1px solid rgba(125, 51, 0, .18);
-    border-radius: 12px;
-    font: inherit;
-    background: #fffaf2;
-}
-
-.upload-details input:focus {
-    outline: 3px solid rgba(255, 145, 0, .16);
-    border-color: #ff8a00;
-}
-
-.upload-status {
-    max-width: 720px;
-    margin: 16px auto 0;
-    min-height: 24px;
-    font-weight: 700;
-}
-
-.gallery-meta {
-    padding: 10px 12px 14px;
-    font-size: .9rem;
-    color: #7d3300;
-}
-
-.gallery-meta strong { display: block; margin-bottom: 3px; }
-
-@media (max-width: 640px) {
-    .upload-details { grid-template-columns: 1fr; }
-}
-
 #photoInput {
 
     display:
@@ -2515,11 +2470,7 @@ footer strong {
             145px;
     }
 
-    .ganesha span {
-
-        font-size:
-            5rem;
-    }
+    .ganesha img { width:120px; height:120px; }
 
     .hero-buttons {
 
@@ -2570,8 +2521,6 @@ footer strong {
 }
 
 </style>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 
@@ -3021,10 +2970,7 @@ footer strong {
 
 
         <div class="ganesha">
-            <img
-        src="https://wallpaperaccess.com/full/23212872.jpg" 
-        alt="Lord Ganesha"
-        loading="eager">
+            <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ganapati_Bappa_Idol_(Lord_Ganesha).jpg" alt="Lord Ganesha" loading="eager">
         </div>
 
 
@@ -3343,6 +3289,8 @@ footer strong {
 
     </div>
 
+    <div class="contributor-admin-link"><a href="admin.html#contributors">🔐 Contributor Manager</a></div>
+
 </section>
 
 
@@ -3565,14 +3513,9 @@ footer strong {
 
 
         <p>
-            Choose photos from your phone or computer.
-            Photos are reviewed before appearing publicly.
+            Choose multiple photos from your phone
+            or computer, or drag and drop them here.
         </p>
-
-        <div class="upload-details">
-            <input id="uploaderName" type="text" maxlength="60" placeholder="Your name (optional)">
-            <input id="photoCaption" type="text" maxlength="140" placeholder="Caption (optional)">
-        </div>
 
 
         <label
@@ -3592,8 +3535,6 @@ footer strong {
 
     </div>
 
-
-    <div id="uploadStatus" class="upload-status" aria-live="polite"></div>
 
     <div
         class="gallery-grid"
@@ -3665,7 +3606,7 @@ const FESTIVAL_DATE =
 */
 
 const WEBSITE_URL =
-    "https://sreenivas-reddy9542.github.io/ganpati-festival-2026/";
+    "https://yourfestivalwebsite.com/";
 
 
 /*
@@ -3678,16 +3619,6 @@ const WEBSITE_URL =
 
 const LIVE_DARSHAN_URL =
     "";
-
-/* =========================================================
-   SHARED PHOTO GALLERY (SUPABASE)
-   Create a Supabase project and paste the Project URL and
-   anon/public key below. Do NOT paste a service-role key here.
-========================================================= */
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
-const MAX_UPLOAD_MB = 10;
-
 
 
 /* =========================================================
@@ -3862,146 +3793,18 @@ const organizingCommittee = [
 
 /* =========================================================
    CONTRIBUTORS / DONORS
-=========================================================
 
-   IMPORTANT:
-   "amount" is a NUMBER so the website can calculate
-   the total automatically.
-
-   Example:
-   amount: 25000
-
+   Contributor information is loaded from Supabase.
+   Authorized users add/edit/reorder contributors in admin.html.
 ========================================================= */
 
-const contributors = [
-
-    {
-        name:
-            "Ravi Kumar",
-
-        photo:
-            "images/contributors/ravi.jpg",
-
-        amount:
-            25000,
-
-        category:
-            "Festival Decoration",
-
-        contribution:
-            "Supported the mandap decoration, flowers and lighting arrangements.",
-
-        icon:
-            "🌺"
-    },
-
-
-    {
-        name:
-            "Priya Sharma",
-
-        photo:
-            "images/contributors/priya.jpg",
-
-        amount:
-            15000,
-
-        category:
-            "Food Seva",
-
-        contribution:
-            "Supported prasadam, sweets and refreshments for the celebration.",
-
-        icon:
-            "🍛"
-    },
-
-
-    {
-        name:
-            "Arjun Reddy",
-
-        photo:
-            "images/contributors/arjun.jpg",
-
-        amount:
-            10000,
-
-        category:
-            "Cultural Programs",
-
-        contribution:
-            "Supported cultural programs, music and children's activities.",
-
-        icon:
-            "🎵"
-    },
-
-
-    {
-        name:
-            "Vijay Kumar",
-
-        photo:
-            "images/contributors/vijay.jpg",
-
-        amount:
-            20000,
-
-        category:
-            "Equipment Support",
-
-        contribution:
-            "Provided support for sound, lighting and festival equipment.",
-
-        icon:
-            "🎤"
-    },
-
-
-    {
-        name:
-            "Sneha",
-
-        photo:
-            "images/contributors/sneha.jpg",
-
-        amount:
-            10000,
-
-        category:
-            "Puja Seva",
-
-        contribution:
-            "Supported puja materials, flowers and devotional arrangements.",
-
-        icon:
-            "🪔"
-    },
-
-
-    {
-        name:
-            "Karthik",
-
-        photo:
-            "images/contributors/karthik.jpg",
-
-        amount:
-            5000,
-
-        category:
-            "Children's Programs",
-
-        contribution:
-            "Supported prizes and materials for children's activities.",
-
-        icon:
-            "🎨"
-    }
-
-];
-
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+let contributors = [];
+let supabaseClient = null;
+if (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
 
 /* =========================================================
    WEEKLY PROGRAMS
@@ -4734,773 +4537,29 @@ organizingCommittee.forEach(
 /* =========================================================
    CONTRIBUTORS RENDER
 ========================================================= */
-
-const contributorGrid =
-    document.getElementById(
-        "contributorGrid"
-    );
-
-
-const totalContribution =
-    contributors.reduce(
-        (
-            total,
-            person
-        ) =>
-            total +
-            Number(
-                person.amount
-            ),
-        0
-    );
-
-
-document.getElementById(
-    "contributorCount"
-).textContent =
-    contributors.length;
-
-
-document.getElementById(
-    "totalContribution"
-).textContent =
-    totalContribution.toLocaleString(
-        "en-IN",
-        {
-            style:
-                "currency",
-
-            currency:
-                "INR",
-
-            maximumFractionDigits:
-                0
-        }
-    );
-
-
-contributors.forEach(
-    person => {
-
-        const card =
-            document.createElement(
-                "article"
-            );
-
-
-        card.className =
-            "contributor-card";
-
-
-        card.innerHTML = `
-
-            <div class="contributor-photo-wrap">
-
-                <img
-                    class="contributor-photo"
-                    src="${person.photo}"
-                    alt="${person.name}"
-                    onerror="
-                        this.src =
-                        'https://placehold.co/300x300/ffd6a0/8b4513?text=Photo';
-                    "
-                >
-
-                <div class="seva-icon">
-                    ${person.icon}
-                </div>
-
-            </div>
-
-
-            <h3>
-                ${person.name}
-            </h3>
-
-
-            <div class="contributor-category">
-                ${person.category}
-            </div>
-
-
-            <div class="contribution-amount">
-
-                ${Number(
-                    person.amount
-                ).toLocaleString(
-                    "en-IN",
-                    {
-                        style:
-                            "currency",
-
-                        currency:
-                            "INR",
-
-                        maximumFractionDigits:
-                            0
-                    }
-                )}
-
-            </div>
-
-
-            <p>
-                ${person.contribution}
-            </p>
-
-        `;
-
-
-        contributorGrid.appendChild(
-            card
-        );
-
-    }
-);
-
-
-/* =========================================================
-   DARSHAN RENDER
-========================================================= */
-
-const darshanGrid =
-    document.getElementById(
-        "darshanGrid"
-    );
-
-
-darshanPhotos.forEach(
-    darshan => {
-
-        const card =
-            document.createElement(
-                "article"
-            );
-
-
-        card.className =
-            "darshan-card";
-
-
-        card.innerHTML = `
-
-            <img
-                class="darshan-photo"
-                src="${darshan.image}"
-                alt="${darshan.title}"
-                onerror="
-                    this.src = 'images/placeholders/darshan.svg';
-                "
-            >
-
-
-            <div class="darshan-info">
-
-                <h3>
-                    ${darshan.title}
-                </h3>
-
-
-                <p>
-                    ${darshan.description}
-                </p>
-
-            </div>
-
-        `;
-
-
-        darshanGrid.appendChild(
-            card
-        );
-
-    }
-);
-
-
-/* =========================================================
-   LIVE DARSHAN
-========================================================= */
-
-const liveContainer =
-    document.getElementById(
-        "liveContainer"
-    );
-
-
-if (
-    LIVE_DARSHAN_URL.trim() !== ""
-) {
-
-    const iframe =
-        document.createElement(
-            "iframe"
-        );
-
-
-    iframe.className =
-        "live-video";
-
-
-    iframe.src =
-        LIVE_DARSHAN_URL;
-
-
-    iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-
-
-    iframe.allowFullscreen =
-        true;
-
-
-    liveContainer.appendChild(
-        iframe
-    );
-
-} else {
-
-    liveContainer.innerHTML = `
-
-        <div class="live-placeholder">
-
-            <div class="live-placeholder-icon">
-                📺
-            </div>
-
-            <h3>
-                Live Darshan Coming Soon
-            </h3>
-
-            <p>
-                Add your YouTube Live embed URL
-                in the settings near the top of
-                this file.
-            </p>
-
-        </div>
-
-    `;
-
+const contributorGrid = document.getElementById("contributorGrid");
+function formatINR(amount) { return Number(amount || 0).toLocaleString("en-IN", {style:"currency",currency:"INR",maximumFractionDigits:0}); }
+function escapeHTML(value) { return String(value ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+function renderContributors() {
+ contributorGrid.innerHTML="";
+ const sorted=[...contributors].sort((a,b)=>Number(a.position||0)-Number(b.position||0));
+ document.getElementById("contributorCount").textContent=sorted.length;
+ const totalContribution=sorted.reduce((t,p)=>t+Number(p.amount||0),0);
+ document.getElementById("totalContribution").textContent=formatINR(totalContribution);
+ if(!sorted.length){ contributorGrid.innerHTML='<div class="contributor-empty"><strong>Contributors will be updated soon 🙏</strong>Contribution details will be added during the festival contribution period.</div>'; return; }
+ sorted.forEach(person=>{
+  const card=document.createElement("article"); card.className="contributor-card";
+  const photo=person.photo||"https://placehold.co/300x300/ffd6a0/8b4513?text=Contributor";
+  card.innerHTML=`<div class="contributor-photo-wrap"><img class="contributor-photo" src="${escapeHTML(photo)}" alt="${escapeHTML(person.name)}" onerror="this.src='https://placehold.co/300x300/ffd6a0/8b4513?text=Photo';"><div class="seva-icon">${escapeHTML(person.icon||"🙏")}</div></div><h3>${escapeHTML(person.name)}</h3><div class="contributor-category">${escapeHTML(person.category||"Festival Support")}</div><div class="contribution-amount">${formatINR(person.amount)}</div><p>${escapeHTML(person.contribution||"Thank you for supporting our festival.")}</p>`;
+  contributorGrid.appendChild(card);
+ });
 }
-
-
-/* =========================================================
-   QR CODE
-========================================================= */
-
-const qrContainer =
-    document.getElementById(
-        "qrcode"
-    );
-
-
-const qrUrlText =
-    document.getElementById(
-        "qrUrlText"
-    );
-
-
-qrUrlText.textContent =
-    WEBSITE_URL;
-
-
-if (
-    typeof QRCode !==
-    "undefined"
-) {
-
-    new QRCode(
-        qrContainer,
-        {
-            text:
-                WEBSITE_URL,
-
-            width:
-                190,
-
-            height:
-                190,
-
-            colorDark:
-                "#7d3300",
-
-            colorLight:
-                "#ffffff",
-
-            correctLevel:
-                QRCode.CorrectLevel.H
-        }
-    );
-
-} else {
-
-    qrContainer.innerHTML = `
-
-        <p>
-            QR library could not load.
-            Please connect to the internet
-            and refresh the page.
-        </p>
-
-    `;
-
+async function loadContributors(){
+ if(!supabaseClient){contributors=[];renderContributors();return;}
+ const {data,error}=await supabaseClient.from("contributors").select("id,name,photo,amount,category,contribution,icon,position").order("position",{ascending:true});
+ if(error){console.error("Could not load contributors:",error);contributors=[];renderContributors();return;}
+ contributors=data||[];renderContributors();
 }
+renderContributors(); loadContributors();
 
 
-/* =========================================================
-   FALLING FLOWERS
-========================================================= */
-
-const flowers = [
-    "🌺",
-    "🌸",
-    "🌼",
-    "✨",
-    "🪔",
-    "🌿"
-];
-
-
-function createParticle() {
-
-    const particle =
-        document.createElement(
-            "div"
-        );
-
-
-    particle.className =
-        "particle";
-
-
-    particle.textContent =
-        flowers[
-            Math.floor(
-                Math.random() *
-                flowers.length
-            )
-        ];
-
-
-    particle.style.left =
-        Math.random() *
-        100 +
-        "vw";
-
-
-    particle.style.fontSize =
-        (
-            15 +
-            Math.random() *
-            20
-        ) +
-        "px";
-
-
-    particle.style.animationDuration =
-        (
-            5 +
-            Math.random() *
-            5
-        ) +
-        "s";
-
-
-    document.body.appendChild(
-        particle
-    );
-
-
-    setTimeout(
-        () =>
-            particle.remove(),
-        10000
-    );
-
-}
-
-
-setInterval(
-    createParticle,
-    700
-);
-
-
-/* =========================================================
-   MUSHIKA MOVEMENT
-========================================================= */
-
-const mushikaCursor =
-    document.getElementById(
-        "mushikaCursor"
-    );
-
-
-const mushika =
-    document.getElementById(
-        "mushikaSvg"
-    );
-
-
-let mouseX =
-    window.innerWidth /
-    2;
-
-
-let mouseY =
-    window.innerHeight /
-    2;
-
-
-let currentX =
-    mouseX;
-
-
-let currentY =
-    mouseY;
-
-
-let previousX =
-    mouseX;
-
-
-let previousY =
-    mouseY;
-
-
-let movementSpeed =
-    0;
-
-
-let facingRight =
-    true;
-
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        mouseX =
-            event.clientX;
-
-        mouseY =
-            event.clientY;
-
-    }
-);
-
-
-function animateMushika() {
-
-    currentX +=
-        (
-            mouseX -
-            currentX
-        ) *
-        .16;
-
-
-    currentY +=
-        (
-            mouseY -
-            currentY
-        ) *
-        .16;
-
-
-    const dx =
-        currentX -
-        previousX;
-
-
-    const dy =
-        currentY -
-        previousY;
-
-
-    const movement =
-        Math.sqrt(
-            dx * dx +
-            dy * dy
-        );
-
-
-    movementSpeed =
-        movementSpeed *
-        .8 +
-        movement *
-        .2;
-
-
-    if (
-        Math.abs(dx) >
-        .7
-    ) {
-
-        facingRight =
-            dx >
-            0;
-
-    }
-
-
-    /*
-       Mushika does NOT grow when
-       hovering or clicking anything.
-
-       Its size remains fixed.
-       Only its direction changes.
-    */
-
-    const directionScale =
-        facingRight
-            ? 1
-            : -1;
-
-
-    mushikaCursor.style.left =
-        currentX +
-        "px";
-
-
-    mushikaCursor.style.top =
-        currentY +
-        "px";
-
-
-    mushika.style.transform =
-        `scaleX(${directionScale})`;
-
-
-    if (
-        movementSpeed >
-        .7
-    ) {
-
-        mushikaCursor.classList.add(
-            "mushika-running"
-        );
-
-    } else {
-
-        mushikaCursor.classList.remove(
-            "mushika-running"
-        );
-
-    }
-
-
-    previousX =
-        currentX;
-
-
-    previousY =
-        currentY;
-
-
-    requestAnimationFrame(
-        animateMushika
-    );
-
-}
-
-
-animateMushika();
-
-
-/* =========================================================
-   SHARED FRIEND PHOTO GALLERY
-   Photos are stored in Supabase and only approved photos are
-   displayed publicly. This replaces browser-only localStorage.
-========================================================= */
-
-const photoInput = document.getElementById("photoInput");
-const galleryGrid = document.getElementById("galleryGrid");
-const uploadArea = document.getElementById("uploadArea");
-const uploadStatus = document.getElementById("uploadStatus");
-const uploaderName = document.getElementById("uploaderName");
-const photoCaption = document.getElementById("photoCaption");
-
-let supabaseClient = null;
-
-function setUploadStatus(message, type = "") {
-    uploadStatus.textContent = message;
-    uploadStatus.className = `upload-status ${type}`;
-}
-
-function gallerySetupReady() {
-    return SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase;
-}
-
-function showEmptyGallery() {
-    galleryGrid.innerHTML = `
-        <div class="empty-gallery">
-            <div style="font-size:3rem;margin-bottom:10px;">📸</div>
-            <p>No approved photos yet.<br>Be the first friend to share a memory!</p>
-        </div>`;
-}
-
-function escapeHtml(value) {
-    return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-function renderGallery(photos) {
-    galleryGrid.innerHTML = "";
-    if (!photos.length) {
-        showEmptyGallery();
-        return;
-    }
-
-    for (const photo of photos) {
-        const { data } = supabaseClient.storage
-            .from("festival-photos")
-            .getPublicUrl(photo.storage_path);
-
-        const card = document.createElement("article");
-        card.className = "gallery-photo";
-        card.innerHTML = `
-            <img src="${data.publicUrl}" alt="${escapeHtml(photo.caption || "Vinayaka Chaturthi memory")}" loading="lazy">
-            <div class="gallery-meta">
-                ${photo.caption ? `<strong>${escapeHtml(photo.caption)}</strong>` : ""}
-                ${photo.uploader_name ? `<span>Shared by ${escapeHtml(photo.uploader_name)}</span>` : ""}
-            </div>`;
-        galleryGrid.appendChild(card);
-    }
-}
-
-async function loadApprovedPhotos() {
-    if (!gallerySetupReady()) {
-        showEmptyGallery();
-        setUploadStatus("Photo sharing is ready, but the Supabase connection still needs to be configured.");
-        return;
-    }
-
-    supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
-
-    const { data, error } = await supabaseClient
-        .from("festival_photos")
-        .select("id, storage_path, uploader_name, caption, created_at")
-        .eq("status", "approved")
-        .order("created_at", { ascending: false });
-
-    if (error) {
-        console.error(error);
-        showEmptyGallery();
-        setUploadStatus("The shared gallery could not be loaded right now. Please try again later.");
-        return;
-    }
-
-    renderGallery(data || []);
-}
-
-async function uploadPhoto(file) {
-    if (!gallerySetupReady()) {
-        setUploadStatus("The shared photo system is not configured yet. Please complete the Supabase setup.");
-        return;
-    }
-
-    if (!file.type.startsWith("image/")) {
-        setUploadStatus("Please choose an image file.");
-        return;
-    }
-
-    if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
-        setUploadStatus(`Please keep each photo under ${MAX_UPLOAD_MB} MB.`);
-        return;
-    }
-
-    const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
-    const safeExtension = ["jpg", "jpeg", "png", "webp", "gif"].includes(extension) ? extension : "jpg";
-    const id = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const storagePath = `pending/${id}.${safeExtension}`;
-
-    setUploadStatus("Uploading photo…");
-
-    const { error: uploadError } = await supabaseClient.storage
-        .from("festival-photos")
-        .upload(storagePath, file, {
-            cacheControl: "3600",
-            upsert: false,
-            contentType: file.type
-        });
-
-    if (uploadError) {
-        console.error(uploadError);
-        setUploadStatus("Photo upload failed. Please try again.");
-        return;
-    }
-
-    const { error: insertError } = await supabaseClient
-        .from("festival_photos")
-        .insert({
-            storage_path: storagePath,
-            uploader_name: uploaderName.value.trim() || null,
-            caption: photoCaption.value.trim() || null,
-            status: "pending"
-        });
-
-    if (insertError) {
-        console.error(insertError);
-        await supabaseClient.storage.from("festival-photos").remove([storagePath]);
-        setUploadStatus("The photo was uploaded but could not be submitted for review. Please try again.");
-        return;
-    }
-
-    setUploadStatus("Thank you! Your photo was submitted and is waiting for approval. 🙏");
-}
-
-function processFiles(files) {
-    const list = Array.from(files || []);
-    if (!list.length) return;
-
-    (async () => {
-        for (const file of list) {
-            await uploadPhoto(file);
-        }
-        await loadApprovedPhotos();
-    })();
-}
-
-photoInput.addEventListener("change", event => {
-    processFiles(event.target.files);
-    photoInput.value = "";
-});
-
-uploadArea.addEventListener("dragover", event => {
-    event.preventDefault();
-    uploadArea.classList.add("dragover");
-});
-
-uploadArea.addEventListener("dragleave", () => {
-    uploadArea.classList.remove("dragover");
-});
-
-uploadArea.addEventListener("drop", event => {
-    event.preventDefault();
-    uploadArea.classList.remove("dragover");
-    processFiles(event.dataTransfer.files);
-});
-
-loadApprovedPhotos();
-
-/* =========================================================
-   START
-========================================================= */
-
-console.log(
-    `🐘 Ganpati Bappa Morya! ${FESTIVAL_YEAR} 🐭`
-);
-
-</script>
-
-</body>
-</html>
